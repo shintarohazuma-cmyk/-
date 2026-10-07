@@ -68,3 +68,8 @@ test("課税項目の具体例でも検索できる", () => {
   assert.equal(search(ITEMS, "ロッカー使用料")[0].name, "接待ゴルフ（プレー代）");
   assert.equal(search(ITEMS, "食玩")[0].cat, "k8");
 });
+
+test("不課税・免税項目の具体例でも検索できる", () => {
+  assert.equal(search(ITEMS, "お賽銭")[0].cat, "fu");
+  assert.equal(search(ITEMS, "腕時計の修理")[0].cat, "men");
+});
