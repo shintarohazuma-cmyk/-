@@ -24,8 +24,8 @@ test("すべての区分に項目がある", () => {
   }
 });
 
-test("課税・軽減税率・非課税の項目はすべて具体例を持つ", () => {
-  for (const item of ITEMS.filter((i) => ["k10", "k8", "hi"].includes(i.cat))) {
+test("すべての項目が具体例を持つ", () => {
+  for (const item of ITEMS) {
     assert.ok(Array.isArray(item.examples) && item.examples.length, `${item.name}: examples がない`);
     for (const ex of item.examples) assert.ok(typeof ex === "string" && ex.trim(), `${item.name}: 空の具体例`);
     assert.equal(new Set(item.examples).size, item.examples.length, `${item.name}: 具体例が重複`);
