@@ -46,3 +46,14 @@ test("区分・勘定科目で絞り込める", () => {
 test("空クエリは全件を元の順序で返す", () => {
   assert.deepEqual(search(ITEMS, ""), ITEMS);
 });
+
+test("社会保険料は会社負担分が非課税、従業員からの預り分が不課税", () => {
+  const company = search(ITEMS, "社会保険料 会社負担");
+  assert.equal(company[0].cat, "hi");
+  assert.ok(company[0].accounts.includes("法定福利費"));
+  const employee = search(ITEMS, "社会保険料 従業員負担");
+  assert.equal(employee[0].cat, "fu");
+  assert.ok(employee[0].accounts.includes("預り金"));
+  // 法定福利費の項目はすべて非課税
+  assert.ok(search(ITEMS, "", { account: "法定福利費" }).every((i) => i.cat === "hi"));
+});
