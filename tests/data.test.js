@@ -23,3 +23,11 @@ test("すべての区分に項目がある", () => {
     assert.ok(ITEMS.some((i) => i.cat === code), `${code} の項目がない`);
   }
 });
+
+test("非課税の項目はすべて具体例を持つ", () => {
+  for (const item of ITEMS.filter((i) => i.cat === "hi")) {
+    assert.ok(Array.isArray(item.examples) && item.examples.length, `${item.name}: examples がない`);
+    for (const ex of item.examples) assert.ok(typeof ex === "string" && ex.trim(), `${item.name}: 空の具体例`);
+    assert.equal(new Set(item.examples).size, item.examples.length, `${item.name}: 具体例が重複`);
+  }
+});

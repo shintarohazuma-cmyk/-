@@ -57,3 +57,9 @@ test("社会保険料は会社負担分が非課税、従業員からの預り�
   // 法定福利費の項目はすべて非課税
   assert.ok(search(ITEMS, "", { account: "法定福利費" }).every((i) => i.cat === "hi"));
 });
+
+test("具体例の語でも検索できる", () => {
+  const [top] = search(ITEMS, "小作料");
+  assert.ok(top, "ヒットなし");
+  assert.equal(top.name, "土地の貸付け（地代）");
+});

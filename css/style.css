@@ -188,6 +188,11 @@ details[open] > .item-head::after { content: "－"; }
 .item-body { padding: 0 14px 14px; }
 .item-desc { margin: 0 0 8px; }
 
+.examples-block { margin: 0 0 8px; }
+.examples-title { margin: 0 0 2px; font-size: 0.88rem; font-weight: 700; }
+.examples { margin: 0; padding-left: 1.3em; font-size: 0.92rem; }
+.examples li { margin-bottom: 2px; }
+
 .item-note {
   margin: 0 0 8px;
   padding: 8px 10px;
