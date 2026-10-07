@@ -63,3 +63,8 @@ test("具体例の語でも検索できる", () => {
   assert.ok(top, "ヒットなし");
   assert.equal(top.name, "土地の貸付け（地代）");
 });
+
+test("課税項目の具体例でも検索できる", () => {
+  assert.equal(search(ITEMS, "ロッカー使用料")[0].name, "接待ゴルフ（プレー代）");
+  assert.equal(search(ITEMS, "食玩")[0].cat, "k8");
+});
