@@ -101,9 +101,19 @@
     return el("div", {}, [el("p", { class: "refs-title", text: "国税庁の関連記事" }), list]);
   }
 
+  function renderExamples(item) {
+    if (!item.examples || !item.examples.length) return null;
+    var list = el("ul", { class: "examples" });
+    item.examples.forEach(function (ex) {
+      list.appendChild(el("li", { text: ex }));
+    });
+    return el("div", { class: "examples-block" }, [el("p", { class: "examples-title", text: "具体例" }), list]);
+  }
+
   function renderItem(item) {
     var body = el("div", { class: "item-body" }, [
       el("p", { class: "item-desc", text: item.desc }),
+      renderExamples(item),
       item.note ? el("p", { class: "item-note", text: item.note }) : null,
       el("dl", { class: "item-meta" }, [
         el("dt", { text: "勘定科目" }),

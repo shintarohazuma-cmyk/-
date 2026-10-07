@@ -40,6 +40,10 @@
     for (i = 0; i < item.accounts.length; i++) {
       if (normalize(item.accounts[i]).indexOf(term) >= 0) return 35;
     }
+    var examples = item.examples || [];
+    for (i = 0; i < examples.length; i++) {
+      if (normalize(examples[i]).indexOf(term) >= 0) return 25;
+    }
     if (normalize(item.desc).indexOf(term) >= 0) return 15;
     if (normalize(item.note).indexOf(term) >= 0) return 10;
     return 0;
