@@ -4,6 +4,11 @@
   var CATEGORIES = TAX_DATA.CATEGORIES;
   var ITEMS = TAX_DATA.ITEMS;
   var CAT_ORDER = ["k10", "k8", "hi", "fu", "men"];
+  var NTA = typeof NTA_DATA !== "undefined" ? NTA_DATA : { FETCHED_AT: "", TYPES: {}, ARTICLES: [] };
+  var ARTICLE_BY_URL = {};
+  NTA.ARTICLES.forEach(function (a) {
+    ARTICLE_BY_URL[a.url] = a;
+  });
 
   var state = { q: "", cat: "", account: "" };
 
@@ -77,6 +82,25 @@
     });
   }
 
+  function articleLabel(a) {
+    return (a.type === "taxanswer" ? "No." + a.no + " " : "") + a.title;
+  }
+
+  function externalLink(url, text, cls) {
+    return el("a", { href: url, target: "_blank", rel: "noopener", class: cls || "", text: text });
+  }
+
+  function renderRefs(item) {
+    if (!item.refs || !item.refs.length) return null;
+    var list = el("ul", { class: "refs" });
+    item.refs.forEach(function (url) {
+      var a = ARTICLE_BY_URL[url];
+      var label = a ? NTA.TYPES[a.type].label + "　" + articleLabel(a) : url;
+      list.appendChild(el("li", {}, [externalLink(url, label)]));
+    });
+    return el("div", {}, [el("p", { class: "refs-title", text: "国税庁の関連記事" }), list]);
+  }
+
   function renderItem(item) {
     var body = el("div", { class: "item-body" }, [
       el("p", { class: "item-desc", text: item.desc }),
@@ -87,6 +111,7 @@
         item.keywords.length ? el("dt", { text: "関連語" }) : null,
         item.keywords.length ? el("dd", { text: item.keywords.join("、") }) : null,
       ]),
+      renderRefs(item),
     ]);
     var summary = el("summary", { class: "item-head" }, [
       badge(item.cat),
@@ -272,6 +297,121 @@
     });
   }
 
+  /* ---------- 国税庁の記事 ---------- */
+
+  var PAGE_SIZE = 50;
+  var ntaState = { q: "", type: "", category: "", limit: PAGE_SIZE };
+
+  function buildNtaFilters() {
+    var chips = $("nta-type-filters");
+    var types = [{ code: "", label: "すべて" }].concat(
+      Object.keys(NTA.TYPES).map(function (code) {
+        return { code: code, label: NTA.TYPES[code].label };
+      })
+    );
+    types.forEach(function (t) {
+      var btn = el("button", {
+        class: "chip" + (t.code === ntaState.type ? " is-active" : ""),
+        type: "button",
+        "data-type": t.code,
+        "aria-pressed": String(t.code === ntaState.type),
+        text: t.label,
+      });
+      btn.addEventListener("click", function () {
+        ntaState.type = t.code;
+        Array.prototype.forEach.call(chips.children, function (b) {
+          var active = b.getAttribute("data-type") === ntaState.type;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-pressed", String(active));
+        });
+        fillCategories();
+        renderNta(true);
+      });
+      chips.appendChild(btn);
+    });
+    $("nta-category-filter").addEventListener("change", function (e) {
+      ntaState.category = e.target.value;
+      renderNta(true);
+    });
+    $("nta-q").addEventListener("input", function (e) {
+      ntaState.q = e.target.value;
+      renderNta(true);
+    });
+    fillCategories();
+  }
+
+  // 種別に応じて分類の選択肢を作り直す（国税庁の目次順）
+  function fillCategories() {
+    var select = $("nta-category-filter");
+    var seen = {};
+    var cats = [];
+    NTA.ARTICLES.forEach(function (a) {
+      if (ntaState.type && a.type !== ntaState.type) return;
+      var key = a.type + "|" + a.category;
+      if (seen[key]) return;
+      seen[key] = true;
+      cats.push({ key: key, type: a.type, category: a.category });
+    });
+    select.textContent = "";
+    select.appendChild(el("option", { value: "", text: "すべての分類" }));
+    var found = false;
+    cats.forEach(function (c) {
+      if (c.key === ntaState.category) found = true;
+      var label = ntaState.type ? c.category : NTA.TYPES[c.type].label + "：" + c.category;
+      select.appendChild(el("option", { value: c.key, text: label }));
+    });
+    if (!found) ntaState.category = "";
+    select.value = ntaState.category;
+  }
+
+  function renderArticle(a) {
+    var summary = el("summary", { class: "item-head article-head" }, [
+      el("span", { class: "badge article-type", text: NTA.TYPES[a.type].label }),
+      el("span", { class: "article-title" }, [
+        el("span", { class: "article-no", text: (a.type === "taxanswer" ? "No." : "事例 ") + a.no + "　" + a.category }),
+        el("span", { class: "item-name", text: a.title }),
+      ]),
+    ]);
+    var body = el("div", { class: "item-body" }, [
+      el("p", { class: "article-summary", text: a.summary }),
+      el("p", {}, [externalLink(a.url, "国税庁の原文を開く ↗", "article-link")]),
+      a.asOf ? el("p", { class: "article-asof", text: "記事の基準：" + a.asOf }) : null,
+    ]);
+    return el("li", { class: "item article" }, [el("details", {}, [summary, body])]);
+  }
+
+  function renderNta(resetLimit) {
+    if (resetLimit) ntaState.limit = PAGE_SIZE;
+    // 分類の値は「種別|分類」（種別をまたいで同名の分類があるため）
+    var sep = ntaState.category.indexOf("|");
+    var results = TaxSearch.searchArticles(NTA.ARTICLES, ntaState.q, {
+      type: sep >= 0 ? ntaState.category.slice(0, sep) : ntaState.type,
+      category: sep >= 0 ? ntaState.category.slice(sep + 1) : "",
+    });
+    var list = $("nta-results");
+    list.textContent = "";
+    results.slice(0, ntaState.limit).forEach(function (a) {
+      list.appendChild(renderArticle(a));
+    });
+    if (!results.length) {
+      list.appendChild(el("li", { class: "empty" }, [el("p", { text: "該当する記事が見つかりませんでした。" })]));
+    }
+    if (results.length > ntaState.limit) {
+      var more = el("button", {
+        class: "btn btn-ghost more",
+        type: "button",
+        text: "さらに表示（残り " + (results.length - ntaState.limit) + " 件）",
+      });
+      more.addEventListener("click", function () {
+        ntaState.limit += PAGE_SIZE;
+        renderNta(false);
+      });
+      list.appendChild(el("li", { class: "empty" }, [more]));
+    }
+    if (results.length === 1) list.querySelector("details").open = true;
+    $("nta-count").textContent = results.length + " 件";
+  }
+
   /* ---------- タブ ---------- */
 
   function showTab(name) {
@@ -299,8 +439,12 @@
 
   $("item-total").textContent = "収録 " + ITEMS.length + " 項目";
 
+  $("nta-fetched").textContent = NTA.FETCHED_AT;
+
   buildFilters();
   render();
+  buildNtaFilters();
+  renderNta(true);
   renderFlow();
   renderGuide();
 })();

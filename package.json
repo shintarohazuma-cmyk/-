@@ -5,6 +5,7 @@
   "description": "消費税区分辞書",
   "scripts": {
     "test": "node --test tests/*.test.js",
-    "start": "python3 -m http.server 8000"
+    "start": "python3 -m http.server 8000",
+    "update-nta": "node scripts/fetch-nta.js \"${NTA_HTML_DIR:-/tmp/nta-html}\" && node scripts/build-nta.js \"${NTA_HTML_DIR:-/tmp/nta-html}\""
   }
 }

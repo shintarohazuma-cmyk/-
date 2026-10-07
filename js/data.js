@@ -16,6 +16,7 @@
  *   keywords : 検索用の別名・関連語
  *   desc     : 判定の理由・説明
  *   note     : 注意点（任意）
+ *   refs     : 国税庁の関連記事のURL（任意。js/nta.js に収録されているもの）
  */
 (function (root) {
   "use strict";
@@ -78,6 +79,9 @@
       accounts: ["仕入高", "売上高"],
       keywords: ["物販", "雑貨", "衣料品", "家電"],
       desc: "国内での商品の販売・仕入は課税取引。飲食料品は軽減税率8%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6145.htm",
+      ],
     },
     {
       name: "事務所・店舗の家賃",
@@ -86,7 +90,12 @@
       accounts: ["地代家賃"],
       keywords: ["テナント", "オフィス", "賃料", "倉庫"],
       desc: "建物の貸付けは課税（住宅としての貸付けのみ非課税）。",
-      note: "居住用部分と事業用部分がある場合は按分する。",
+      note: "居住用部分と事業用部分がある場合は按分する。家賃を土地部分と建物部分に区分していても、総額が建物の貸付けの対価として課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6149.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/05/06.htm",
+      ],
     },
     {
       name: "共益費・管理費（事業用物件）",
@@ -96,6 +105,9 @@
       keywords: ["管理費", "共益費"],
       desc: "事業用建物の共益費は家賃と同じく課税。",
       note: "住宅の共益費は家賃と一体で非課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/22.htm",
+      ],
     },
     {
       name: "礼金・更新料（事業用物件）",
@@ -105,6 +117,9 @@
       keywords: ["礼金", "更新料", "敷引き"],
       desc: "返還されない礼金・更新料は貸付けの対価として課税。",
       note: "住宅の場合は非課税。返還される敷金・保証金は不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
+      ],
     },
     {
       name: "月極駐車場・コインパーキング",
@@ -113,7 +128,10 @@
       accounts: ["地代家賃", "旅費交通費"],
       keywords: ["駐車場代", "パーキング", "駐輪場"],
       desc: "区画・舗装・フェンス等の設備がある駐車場の貸付けは「施設の貸付け」として課税。",
-      note: "更地を区画せずそのまま貸す（青空駐車で何の整備もない）場合は土地の貸付けとして非課税。",
+      note: "地面の整備・フェンス・区画・建物の設置をせず、車両の管理もしない更地の貸付けは土地の貸付けとして非課税（貸付期間1か月未満は課税）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6213.htm",
+      ],
     },
     {
       name: "電気・ガス・水道料金",
@@ -176,6 +194,11 @@
       keywords: ["出張手当", "宿泊手当", "日当"],
       desc: "従業員等に支給する国内出張の旅費・宿泊費・日当は、通常必要と認められる範囲で課税仕入れ。",
       note: "インボイス不要（帳簿のみ保存で控除可）。海外出張分は不課税（国際線航空券は免税）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6459.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/18/08.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/03.htm",
+      ],
     },
     {
       name: "通勤手当",
@@ -185,6 +208,10 @@
       keywords: ["定期代", "通勤費"],
       desc: "通勤に通常必要と認められる部分は課税仕入れ（給与本体は不課税）。",
       note: "所得税の非課税限度額を超えても、通勤に通常必要な額なら課税仕入れ。インボイス不要。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6459.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/04.htm",
+      ],
     },
     {
       name: "ホテル・旅館の宿泊費（国内）",
@@ -194,6 +221,9 @@
       keywords: ["宿泊", "ビジネスホテル", "民泊"],
       desc: "国内の宿泊サービスは課税。",
       note: "入湯税・宿泊税が明確に区分されている場合、その部分は不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
+      ],
     },
     {
       name: "ガソリン代",
@@ -202,6 +232,9 @@
       accounts: ["車両費", "旅費交通費"],
       keywords: ["燃料費", "給油", "ハイオク", "レギュラー"],
       desc: "燃料の購入は課税。ガソリン税（揮発油税等）は価格の一部として課税対象に含まれる。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
+      ],
     },
     {
       name: "軽油代",
@@ -210,7 +243,10 @@
       accounts: ["車両費"],
       keywords: ["ディーゼル", "燃料費"],
       desc: "軽油の購入は課税。",
-      note: "軽油引取税は利用者が納める税のため、明確に区分されていれば不課税。",
+      note: "軽油引取税は利用者が納める税のため、特約店等（特別徴収義務者）が販売し、請求書等で明確に区分されていれば不課税。特別徴収義務者でないスタンドの販売分は軽油引取税相当額も含めて課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
+      ],
     },
     {
       name: "高速道路料金・ETC",
@@ -228,7 +264,10 @@
       accounts: ["車両運搬具"],
       keywords: ["自動車", "社用車", "トラック", "バイク"],
       desc: "車両本体・付属品・登録代行手数料等は課税。",
-      note: "自動車税・環境性能割・重量税は不課税、自賠責保険料は非課税、リサイクル預託金は不課税（預け金）。",
+      note: "自動車税・環境性能割・重量税は不課税、自賠責保険料は非課税、リサイクル預託金は不課税（預け金）。中古車の売買では、未経過自動車税・自賠責保険料相当額は区分表示しても車両代金に含めて課税、リサイクル預託金相当額は金銭債権の譲渡として非課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/41.htm",
+      ],
     },
     {
       name: "車検・修理・整備費用",
@@ -272,6 +311,10 @@
       keywords: ["下請", "フリーランス", "委託"],
       desc: "請負・委託契約に基づく役務の対価は課税。",
       note: "実態が雇用（給与）であれば不課税。免税事業者からの仕入れは経過措置による控除割合に注意。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6153.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6475.htm",
+      ],
     },
     {
       name: "税理士・弁護士・司法書士報酬",
@@ -281,6 +324,11 @@
       keywords: ["顧問料", "士業", "社労士", "行政書士", "コンサル"],
       desc: "専門家への報酬は役務の対価として課税。",
       note: "司法書士報酬に含まれる登録免許税・印紙代等の立替実費は不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6153.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/12.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/14/08.htm",
+      ],
     },
     {
       name: "振込手数料",
@@ -298,6 +346,10 @@
       accounts: ["支払手数料"],
       keywords: ["仲介料", "不動産屋", "媒介報酬"],
       desc: "仲介は役務の提供のため、土地の売買や住宅の賃貸の仲介であっても課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6153.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6567.htm",
+      ],
     },
     {
       name: "建物の購入・売却",
@@ -307,6 +359,10 @@
       keywords: ["マンション", "ビル", "中古物件"],
       desc: "建物の譲渡は課税（土地部分は非課税）。",
       note: "土地付き建物は合理的に按分。売却時は譲渡価額全額（帳簿価額ではない）が課税売上になる。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6145.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/14/04.htm",
+      ],
     },
     {
       name: "固定資産の売却（車両・備品等）",
@@ -316,6 +372,10 @@
       keywords: ["下取り", "中古車売却", "機械売却"],
       desc: "事業用資産の譲渡は課税。課税売上は売却益ではなく譲渡対価の総額。",
       note: "車両の下取りは、購入（課税仕入れ）と下取り（課税売上）を分けて処理する。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/02.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6305.htm",
+      ],
     },
     {
       name: "リース料",
@@ -325,6 +385,11 @@
       keywords: ["ファイナンスリース", "オペレーティングリース", "コピー機"],
       desc: "リース取引は課税。ファイナンス・リースは原則として引渡し時に一括で仕入税額控除（賃借処理の場合は支払時の分割控除も可）。",
       note: "契約で利息・保険料相当額が明確に区分されていれば、その部分は非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6163.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/06/06.htm",
+      ],
     },
     {
       name: "レンタル料・賃借料",
@@ -333,6 +398,9 @@
       accounts: ["賃借料"],
       keywords: ["レンタカー", "会議室", "レンタルスペース"],
       desc: "物品・施設の貸付けは課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6149.htm",
+      ],
     },
     {
       name: "ソフトウェア・クラウドサービス利用料（国内事業者）",
@@ -341,7 +409,11 @@
       accounts: ["通信費", "支払手数料", "ソフトウェア"],
       keywords: ["SaaS", "サブスク", "アプリ", "ライセンス", "サーバー代"],
       desc: "国内事業者からの電気通信利用役務の提供は課税。",
-      note: "国外事業者からの提供は、事業者向けならリバースチャージ（特定課税仕入れ）、消費者向けなら登録国外事業者のインボイス等で判定。",
+      note: "国外事業者からの提供は、事業者向けならリバースチャージ（特定課税仕入れ）。消費者向けは国外事業者が申告・納税し、受けた側は適格請求書発行事業者のインボイス等の保存で控除する（登録国外事業者制度は2023年9月30日で廃止）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6118.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6210.htm",
+      ],
     },
     {
       name: "国外事業者からのウェブ広告・クラウド（事業者向け）",
@@ -350,7 +422,12 @@
       accounts: ["広告宣伝費", "通信費"],
       keywords: ["リバースチャージ", "特定課税仕入れ", "電気通信利用役務", "海外サービス"],
       desc: "事業者向け電気通信利用役務の提供はリバースチャージ方式。受けた側が納税義務を負い、同額を仕入税額控除する。",
-      note: "一般課税で課税売上割合95%以上の課税期間、または簡易課税の場合は、当面リバースチャージの申告は不要（なかったものとされる）。",
+      note: "一般課税で課税売上割合95%以上の課税期間、簡易課税の課税期間、2割特例（小規模事業者に係る税額控除の経過措置）を適用する課税期間は、当分の間、特定課税仕入れはなかったものとされ申告不要（仕入税額控除もしない）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6118.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/26/06.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/26/07.htm",
+      ],
     },
     {
       name: "輸入消費税（輸入時に税関に納付）",
@@ -360,6 +437,9 @@
       keywords: ["輸入", "通関", "税関", "地方消費税"],
       desc: "保税地域から引き取る外国貨物は課税（輸入取引）。税関に納付した消費税は仕入税額控除の対象。",
       note: "インボイスではなく輸入許可通知書等の保存が要件。輸入される食品は8%。関税は不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6563.htm",
+      ],
     },
     {
       name: "飲食店での会食・接待",
@@ -368,6 +448,10 @@
       accounts: ["交際費", "会議費"],
       keywords: ["外食", "レストラン", "居酒屋", "懇親会", "ランチミーティング"],
       desc: "テーブル・椅子等の飲食設備で飲食させるサービス（外食）は軽減税率の対象外で10%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6463.htm",
+      ],
     },
     {
       name: "店内飲食（イートイン）",
@@ -377,6 +461,9 @@
       keywords: ["イートイン", "フードコート", "カフェ店内"],
       desc: "店内の飲食設備で飲食する場合は外食として10%。",
       note: "購入時に持ち帰りと申し出た場合は8%。販売時点の意思確認で判定する。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "ケータリング・出張料理",
@@ -386,6 +473,9 @@
       keywords: ["ケータリング", "出張シェフ", "パーティー料理", "配膳"],
       desc: "顧客の指定した場所で調理・配膳等を行うサービスは軽減税率の対象外で10%。",
       note: "料理を届けるだけ（出前・宅配）なら8%。有料老人ホーム・学校給食等は一定の要件で8%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "ホテルのルームサービス・カラオケ店の飲食",
@@ -395,6 +485,9 @@
       keywords: ["ルームサービス", "カラオケ", "ネットカフェ"],
       desc: "飲食設備のある場所での飲食サービスとして10%。",
       note: "客室の冷蔵庫内の飲料（酒類以外）の販売は8%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "酒類（ビール・ワイン・日本酒等）",
@@ -404,6 +497,9 @@
       keywords: ["ビール", "ワイン", "日本酒", "焼酎", "ウイスキー", "お酒", "アルコール"],
       desc: "酒税法上の酒類（アルコール分1度以上）は軽減税率の対象外で10%。",
       note: "ノンアルコールビール（1度未満）は飲食料品として8%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "本みりん・料理酒（酒類に該当するもの）",
@@ -422,6 +518,9 @@
       keywords: ["薬", "栄養ドリンク", "目薬", "サプリ（医薬品）", "マスク"],
       desc: "医薬品・医薬部外品は食品表示法上の食品ではないため10%。",
       note: "特定保健用食品・栄養機能食品・清涼飲料水扱いの栄養ドリンクは8%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "ペットフード",
@@ -474,6 +573,9 @@
       accounts: ["新聞図書費"],
       keywords: ["本", "参考書", "電子書籍", "漫画"],
       desc: "書籍・雑誌は軽減税率の対象外で10%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "新聞（コンビニ・駅売店で購入）",
@@ -482,6 +584,9 @@
       accounts: ["新聞図書費"],
       keywords: ["新聞", "スポーツ新聞", "一部売り"],
       desc: "軽減税率は定期購読契約に限られるため、店頭での購入は10%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "電子版新聞",
@@ -500,6 +605,9 @@
       keywords: ["講習会", "勉強会", "受講料", "研修"],
       desc: "役務の提供の対価として課税。",
       note: "海外で開催されるもの（国外取引）は不課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/09.htm",
+      ],
     },
     {
       name: "会費・入会金（対価性があるもの）",
@@ -509,6 +617,9 @@
       keywords: ["スポーツクラブ", "ジム", "会員制", "年会費", "ゴルフクラブ入会金"],
       desc: "施設利用や情報提供などのサービスの対価となる会費・返還されない入会金は課税。",
       note: "対価性が明らかでない会費は不課税。団体側が不課税とした場合は、支払側もその旨の通知に従い不課税とできる。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6467.htm",
+      ],
     },
     {
       name: "ゴルフ会員権の譲渡",
@@ -517,6 +628,11 @@
       accounts: ["ゴルフ会員権", "雑収入"],
       keywords: ["会員権", "リゾート会員権"],
       desc: "ゴルフ場利用株式・預託金形態の会員権は有価証券から除かれており、譲渡は課税。",
+      note: "個人事業者が所有する会員権は、会員権販売業者の棚卸資産でなければ生活用資産として不課税。ゴルフクラブから直接取得する際の預託金・出資金は不課税（返還しない入会金は課税）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6249.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/19.htm",
+      ],
     },
     {
       name: "接待ゴルフ（プレー代）",
@@ -526,6 +642,10 @@
       keywords: ["ゴルフ", "プレー代", "コンペ"],
       desc: "ゴルフ場の利用料は課税。",
       note: "ゴルフ場利用税は明確に区分されていれば不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6249.htm",
+      ],
     },
     {
       name: "社員旅行（国内）",
@@ -586,6 +706,11 @@
       accounts: ["研修費", "売上高"],
       keywords: ["塾", "習い事", "カルチャースクール", "資格学校"],
       desc: "学校教育法上の学校等に当たらない教育サービスは課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6233.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/10/03.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/10/04.htm",
+      ],
     },
     {
       name: "解約手数料・取消手数料",
@@ -594,7 +719,10 @@
       accounts: ["支払手数料", "雑収入"],
       keywords: ["キャンセル手数料", "事務手数料"],
       desc: "解約等の事務手続きの対価としての手数料は課税。",
-      note: "逸失利益の補塡としてのキャンセル料・違約金は不課税。両方の性格がある場合は区分する。",
+      note: "逸失利益の補塡としてのキャンセル料・違約金は不課税。事務手数料部分と損害賠償金部分を区分せず一括して受領するキャンセル料は、全額を不課税として扱う。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6253.htm",
+      ],
     },
     {
       name: "クレジットカード年会費",
@@ -613,6 +741,110 @@
       keywords: ["みなし譲渡", "自家消費", "役員への無償譲渡"],
       desc: "無償でも「みなし譲渡」として課税対象。棚卸資産は時価（仕入価額以上かつ通常販売価額の50%以上なら認められる）で計上。",
       note: "食品の場合は8%。役員への著しく低い価額での譲渡も時価との差額が問題となる。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6317.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6321.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/14/03.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/14/09.htm",
+      ],
+    },
+
+    {
+      name: "人材派遣料（労働者派遣）",
+      kana: "じんざいはけんりょう",
+      cat: "k10",
+      accounts: ["外注費", "支払手数料"],
+      keywords: ["派遣社員", "派遣料", "労働者派遣"],
+      desc: "派遣先と派遣労働者の間に雇用関係がない労働者派遣の対価は、人材派遣会社の役務の提供として課税。支払った派遣先は課税仕入れ。",
+      note: "出向（出向先とも雇用関係がある）の給与負担金は不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6475.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/08.htm",
+      ],
+    },
+    {
+      name: "原状回復費用（保証金から差し引くもの）",
+      kana: "げんじょうかいふくひよう",
+      cat: "k10",
+      accounts: ["修繕費", "雑収入"],
+      keywords: ["退去", "原状回復工事", "敷金精算", "保証金"],
+      desc: "賃借人の原状回復義務を賃貸人が代わりに行う役務の提供の対価として、保証金等から差し引く工事費相当額は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6261.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/06.htm",
+      ],
+    },
+    {
+      name: "明渡し遅延の割増賃貸料（店舗・事務所）",
+      kana: "あけわたしちえんのわりましちんたいりょう",
+      cat: "k10",
+      accounts: ["受取家賃", "雑収入"],
+      keywords: ["違約入居者", "割増賃料", "明渡し遅延"],
+      desc: "契約期間終了後も立ち退かない入居者から受け取る割増賃貸料は、その全額が店舗・事務所等の貸付けの対価として課税。",
+      note: "住宅用の貸付けに係る割増賃貸料は住宅の貸付けの対価として非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6261.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/23.htm",
+      ],
+    },
+    {
+      name: "電柱の広告使用料",
+      kana: "でんちゅうのこうこくしようりょう",
+      cat: "k10",
+      accounts: ["広告宣伝費", "受取賃貸料"],
+      keywords: ["電柱広告", "看板"],
+      desc: "電柱を広告等のために使用させる使用料は、電柱の一部の貸付けの対価であり土地の貸付けに当たらないため課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/05/07.htm",
+      ],
+    },
+    {
+      name: "同業者団体等の共同行事の負担金",
+      kana: "どうぎょうしゃだんたいとうのきょうどうぎょうじのふたんきん",
+      cat: "k10",
+      accounts: ["諸会費", "広告宣伝費", "販売促進費"],
+      keywords: ["共同宣伝", "販売促進", "賦課金", "共同販売促進費"],
+      desc: "構成員全体の宣伝・販売促進・会議などの共同行事のために主宰者が集める負担金は、役務の提供の対価として課税。",
+      note: "費用全額について構成員ごとの負担割合が定められ、主宰者が仮勘定で経理する場合は、構成員が負担割合に応じて共同行事を行ったものとして仕入税額控除できる（主宰者が剰余金を取得する場合を除く）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6479.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/24.htm",
+      ],
+    },
+    {
+      name: "生命保険料の給与引去手数料",
+      kana: "せいめいほけんりょうのきゅうよひきさりてすうりょう",
+      cat: "k10",
+      accounts: ["雑収入", "受取手数料"],
+      keywords: ["団体扱い", "集金手数料", "給与天引き"],
+      desc: "生命保険料の受入れ自体には課税関係は生じないが、生命保険会社から受ける給与からの引去手数料は役務の提供の対価として課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/29.htm",
+      ],
+    },
+    {
+      name: "金銭貸付時の契約締結料・事務手数料",
+      kana: "きんせんかしつけじのけいやくていけつりょう・じむてすうりょう",
+      cat: "k10",
+      accounts: ["支払手数料", "受取手数料"],
+      keywords: ["融資手数料", "ローン事務手数料", "貸付"],
+      desc: "金銭の貸付けの際に収受する契約締結料・事務手数料は、利子ではなく役務の提供の対価として課税（利息制限法上の利息とみなされるかどうかは問わない）。",
+      note: "利子そのものは非課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/13/02.htm",
+      ],
+    },
+    {
+      name: "中古車購入時の未経過自動車税・自賠責保険料相当額",
+      kana: "ちゅうこしゃこうにゅうじのみけいかじどうしゃぜい",
+      cat: "k10",
+      accounts: ["車両運搬具"],
+      keywords: ["中古車", "自動車税相当額", "自賠責相当額"],
+      desc: "中古車の売買で買主が支払う未経過自動車税・自賠責保険料相当額は、税金や保険料そのものではなく中古車の購入代金の一部であり、区分表示しても課税。",
+      note: "リサイクル預託金相当額は金銭債権の譲渡として非課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/41.htm",
+      ],
     },
 
     /* ===================== 軽減税率 8% ===================== */
@@ -623,6 +855,9 @@
       accounts: ["仕入高", "福利厚生費", "会議費"],
       keywords: ["食品", "食材", "生鮮食品", "お菓子", "調味料", "米"],
       desc: "酒類を除く飲食料品（食品表示法上の食品）の譲渡は軽減税率8%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "弁当・惣菜のテイクアウト",
@@ -632,6 +867,9 @@
       keywords: ["持ち帰り", "テイクアウト", "コンビニ弁当", "おにぎり", "パン"],
       desc: "持ち帰りの飲食料品の譲渡は8%。",
       note: "店内で食べる場合は外食として10%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "出前・宅配（ピザ・寿司等）",
@@ -641,6 +879,9 @@
       keywords: ["デリバリー", "宅配ピザ", "ウーバーイーツ", "出前"],
       desc: "飲食料品を届けるだけの出前・宅配は8%。",
       note: "配膳・調理を伴うケータリングは10%。デリバリー代行の配達手数料は役務の対価として10%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "会議用のお弁当・お茶",
@@ -709,6 +950,9 @@
       keywords: ["おまけ付き", "食玩", "詰め合わせ", "福袋"],
       desc: "食品と食品以外が一体の資産は、税抜1万円以下かつ食品部分の価額が全体の2/3以上なら全体が8%。",
       note: "要件を満たさない場合は全体が10%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "新聞の定期購読",
@@ -718,6 +962,9 @@
       keywords: ["日経新聞", "朝刊", "業界紙", "新聞代"],
       desc: "週2回以上発行され、定期購読契約に基づく新聞の譲渡は8%。",
       note: "週1回発行の業界紙、店頭購入、電子版は10%。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      ],
     },
     {
       name: "学校給食・有料老人ホームの食事",
@@ -764,6 +1011,10 @@
       keywords: ["土地売買", "宅地", "更地", "農地"],
       desc: "土地の譲渡は非課税（別表第二第1号）。",
       note: "土地の売却は課税売上割合を下げるため、一般課税の事業者は影響に注意（課税売上割合に準ずる割合の承認申請も検討）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6145.htm",
+      ],
     },
     {
       name: "土地の貸付け（地代）",
@@ -773,6 +1024,11 @@
       keywords: ["地代", "借地料", "貸地"],
       desc: "土地の貸付けは非課税。",
       note: "貸付期間1か月未満のもの、駐車場など施設の利用に伴うものは課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6213.htm",
+      ],
     },
     {
       name: "借地権の設定・譲渡",
@@ -781,6 +1037,10 @@
       accounts: ["借地権", "権利金"],
       keywords: ["権利金", "借地権", "地上権"],
       desc: "土地の上に存する権利の譲渡・設定は非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/05/04.htm",
+      ],
     },
     {
       name: "住宅の家賃（1か月以上の貸付け）",
@@ -790,6 +1050,12 @@
       keywords: ["アパート", "マンション", "社宅", "借上社宅", "居住用", "賃貸住宅"],
       desc: "住宅の貸付け（契約で居住用と明らかなもの・状況から居住用と推認されるもの）は非課税。",
       note: "1か月未満の貸付け、旅館業法の宿泊施設（民泊・マンスリー等の一部）は課税。社宅として借りて従業員に貸す場合も非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6226.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/09/01.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/19/10.htm",
+      ],
     },
     {
       name: "住宅の礼金・更新料・共益費",
@@ -799,6 +1065,11 @@
       keywords: ["礼金", "更新料", "共益費", "管理費", "居住用"],
       desc: "住宅の貸付けに伴うものとして非課税。",
       note: "仲介手数料は課税。駐車場代が家賃と別に設定される場合は原則課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6226.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/09/02.htm",
+      ],
     },
     {
       name: "株式・社債・国債等の売却",
@@ -808,6 +1079,9 @@
       keywords: ["株", "投資信託", "有価証券", "債券"],
       desc: "有価証券等の譲渡は非課税。",
       note: "課税売上割合の計算では、有価証券の譲渡対価は5%相当額のみ分母に算入。証券会社の売買手数料は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+      ],
     },
     {
       name: "暗号資産の譲渡",
@@ -817,6 +1091,9 @@
       keywords: ["仮想通貨", "ビットコイン", "BTC", "イーサリアム"],
       desc: "資金決済法上の暗号資産の譲渡は支払手段に類するものとして非課税。",
       note: "課税売上割合の計算にも含めない。NFTは原則として課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+      ],
     },
     {
       name: "受取利息・支払利息",
@@ -825,6 +1102,9 @@
       accounts: ["受取利息", "支払利息"],
       keywords: ["利子", "預金利息", "借入金利息", "割引料"],
       desc: "利子を対価とする金銭の貸付け等は非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
+      ],
     },
     {
       name: "信用保証料",
@@ -833,6 +1113,9 @@
       accounts: ["支払利息", "支払保証料"],
       keywords: ["保証協会", "保証料"],
       desc: "信用の保証は非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
+      ],
     },
     {
       name: "保険料（生命保険・損害保険・自動車保険）",
@@ -842,6 +1125,9 @@
       keywords: ["生命保険", "火災保険", "自賠責", "任意保険", "賠償責任保険"],
       desc: "保険料を対価とする役務の提供は非課税。",
       note: "保険代理店手数料は課税。受け取る保険金は不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
+      ],
     },
     {
       name: "クレジットカード加盟店手数料",
@@ -851,6 +1137,10 @@
       keywords: ["カード決済手数料", "決済手数料", "Square", "Airペイ"],
       desc: "加盟店手数料は金銭債権の譲渡（割引）に係るものとして非課税。",
       note: "決済端末のレンタル料や、QRコード決済等で役務提供の対価とされる手数料は課税の場合がある。契約内容で確認。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/06/02.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
+      ],
     },
     {
       name: "外国為替・両替手数料",
@@ -860,6 +1150,9 @@
       keywords: ["両替", "外貨", "為替手数料", "海外送金"],
       desc: "外国為替業務に係る役務の提供は非課税。",
       note: "国内の振込手数料は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+      ],
     },
     {
       name: "郵便切手・はがきの購入",
@@ -868,7 +1161,11 @@
       accounts: ["通信費", "貯蔵品"],
       keywords: ["切手", "はがき", "年賀はがき", "レターパック"],
       desc: "郵便局・登録郵便切手類販売所等での切手類の譲渡は非課税。使用時に課税仕入れとなる。",
-      note: "自社使用分は継続適用を条件に購入時に課税仕入れとしても可。金券ショップ等での購入も非課税。",
+      note: "自社使用分は継続適用を条件に購入時に課税仕入れとしても可。金券ショップ（チケット業者）が販売する郵便切手類は非課税にならず課税（10%）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6229.htm",
+      ],
     },
     {
       name: "収入印紙・証紙の購入",
@@ -877,6 +1174,10 @@
       accounts: ["租税公課"],
       keywords: ["印紙", "収入印紙", "印紙税", "証紙"],
       desc: "印紙・証紙の譲渡は非課税。印紙税は税金なので使用しても仕入税額控除はない。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6229.htm",
+      ],
     },
     {
       name: "商品券・ギフトカード・プリペイドカードの購入",
@@ -886,6 +1187,11 @@
       keywords: ["QUOカード", "図書カード", "Amazonギフト", "ビール券", "金券"],
       desc: "物品切手等の譲渡は非課税。",
       note: "商品券で物品を購入した時点で課税仕入れ。贈答用に購入した場合は仕入税額控除なし。電子マネーのチャージは不課税（前払）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6229.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/16.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6463.htm",
+      ],
     },
     {
       name: "行政手数料（住民票・印鑑証明・登記事項証明等）",
@@ -895,6 +1201,9 @@
       keywords: ["住民票", "印鑑証明", "登記簿謄本", "戸籍", "パスポート", "許可申請手数料", "車庫証明"],
       desc: "法令に基づく国・地方公共団体等の事務の手数料は非課税。",
       note: "行政書士等に依頼した場合の報酬部分は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+      ],
     },
     {
       name: "社会保険診療（保険診療）",
@@ -904,6 +1213,10 @@
       keywords: ["病院", "診察", "保険適用", "処方薬", "調剤"],
       desc: "健康保険法等に基づく療養の給付等は非課税。",
       note: "自由診療・健康診断・市販薬は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/07/01.htm",
+      ],
     },
     {
       name: "介護保険サービス",
@@ -913,6 +1226,10 @@
       keywords: ["介護", "デイサービス", "訪問介護", "ケアプラン"],
       desc: "介護保険法に基づく居宅・施設サービス等は非課税。",
       note: "利用者の選択による特別な居室・食事等の追加料金は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/08/06.htm",
+      ],
     },
     {
       name: "社会福祉事業",
@@ -922,6 +1239,10 @@
       keywords: ["保育所", "保育料", "障害福祉", "児童福祉", "認可保育園"],
       desc: "社会福祉法に規定する社会福祉事業・更生保護事業等は非課税。",
       note: "一定の基準を満たす認可外保育施設の保育料も非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6215.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/10/05.htm",
+      ],
     },
     {
       name: "助産（出産費用）",
@@ -930,6 +1251,9 @@
       accounts: ["売上高"],
       keywords: ["出産", "分娩", "妊婦健診"],
       desc: "医師・助産師等による助産に係る資産の譲渡等は非課税（妊娠中・出産後の入院等を含む）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+      ],
     },
     {
       name: "火葬料・埋葬料",
@@ -939,6 +1263,9 @@
       keywords: ["火葬", "埋葬", "納骨"],
       desc: "埋葬料・火葬料を対価とする役務の提供は非課税。",
       note: "墓地の永代使用料は土地の貸付けとして非課税。墓石・葬儀社のサービスは課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+      ],
     },
     {
       name: "身体障害者用物品",
@@ -947,6 +1274,11 @@
       accounts: ["売上高", "消耗品費"],
       keywords: ["車いす", "義足", "補聴器", "盲人安全つえ"],
       desc: "厚生労働大臣が指定する身体障害者用物品の譲渡・貸付け・修理等は非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6214.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/10/02.htm",
+      ],
     },
     {
       name: "学校の授業料・入学金・入学検定料",
@@ -956,6 +1288,10 @@
       keywords: ["学費", "授業料", "入学金", "受験料", "施設設備費", "専修学校"],
       desc: "学校教育法に規定する学校・専修学校・一定の各種学校等の授業料・入学金・施設設備費・入学検定料・在学証明手数料等は非課税。",
       note: "学習塾・予備校・カルチャースクールは課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6233.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/10/04.htm",
+      ],
     },
     {
       name: "教科用図書（教科書）",
@@ -965,6 +1301,9 @@
       keywords: ["教科書", "検定教科書"],
       desc: "学校教育法に規定する教科用図書の譲渡は非課税。",
       note: "参考書・問題集は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6233.htm",
+      ],
     },
     {
       name: "国際郵便為替・外国為替",
@@ -984,6 +1323,56 @@
       note: "従業員からの預り分を預り金で処理する場合、その部分は不課税。預り金を使わず法定福利費で処理する場合は、預り分も含めて全額非課税で処理する。",
     },
 
+    {
+      name: "道路占用料",
+      kana: "どうろせんようりょう",
+      cat: "hi",
+      accounts: ["地代家賃", "租税公課"],
+      keywords: ["道路占用", "占用料"],
+      desc: "道路占用料は土地の貸付けの対価として非課税。",
+      note: "貸付期間が1か月未満の場合は課税（1か月分を収受する場合も同様）。橋梁等の建設負担金は施設を利用する権利の設定の対価として課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/05/01.htm",
+      ],
+    },
+    {
+      name: "中古車売買のリサイクル預託金相当額",
+      kana: "ちゅうこしゃばいばいのりさいくるよたくきん",
+      cat: "hi",
+      accounts: ["預け金", "車両運搬具"],
+      keywords: ["リサイクル料金", "預託金", "中古車"],
+      desc: "中古車として転売する際のリサイクル預託金相当額は、資金管理法人に預託されている預託金の譲渡であり、金銭債権の譲渡として非課税。",
+      note: "新車購入時に支払うリサイクル預託金は預け金として不課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/41.htm",
+      ],
+    },
+    {
+      name: "認可外保育施設の保育料（証明書交付施設）",
+      kana: "にんかがいほいくしせつのほいくりょう",
+      cat: "hi",
+      accounts: ["福利厚生費", "売上高"],
+      keywords: ["保育料", "ベビーシッター", "託児所", "企業主導型保育"],
+      desc: "認可外保育施設指導監督基準を満たす旨の証明書の交付を受けた施設等の保育料（延長・一時・病児保育を含む）や、保育に必要な入園料・送迎料等は非課税。",
+      note: "選択による付加的サービス（クリーニング・習い事等）、教材販売、バザー収入は課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/10/05.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6215.htm",
+      ],
+    },
+    {
+      name: "大学等の正規授業の聴講料（社員研修）",
+      kana: "だいがくとうのせいきじゅぎょうのちょうこうりょう",
+      cat: "hi",
+      accounts: ["研修費", "教育研修費"],
+      keywords: ["聴講生", "社員研修", "大学院"],
+      desc: "大学等の正規の授業科目を聴講生として受ける場合の授業料・聴講料は教育に関する役務の提供として非課税（会社が負担しても課税仕入れにならない）。",
+      note: "大学の公開講座・研究機関の研修など、非課税の教育に当たらないものは課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/09.htm",
+      ],
+    },
+
     /* ===================== 不課税（対象外） ===================== */
     {
       name: "給与・賞与・役員報酬",
@@ -993,6 +1382,10 @@
       keywords: ["給料", "アルバイト代", "パート", "残業代", "人件費"],
       desc: "雇用契約に基づく労働の対価は事業として行う資産の譲渡等に当たらず不課税。",
       note: "通勤手当・出張旅費は通常必要な範囲で課税仕入れ。派遣会社への派遣料は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6475.htm",
+      ],
     },
     {
       name: "退職金",
@@ -1019,6 +1412,10 @@
       keywords: ["寄付", "ふるさと納税", "義援金", "募金"],
       desc: "対価性のない一方的な金銭の支払いのため不課税。",
       note: "返礼品等の反対給付を受ける場合も、寄附金自体は通常不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6463.htm",
+      ],
     },
     {
       name: "祝金・香典・見舞金（現金）",
@@ -1028,6 +1425,10 @@
       keywords: ["慶弔金", "お祝い", "香典", "弔慰金", "結婚祝い", "お見舞い"],
       desc: "現金での祝金・香典等は対価性がなく不課税。",
       note: "花輪・供花・祝いの品を購入した場合は課税（食品は8%）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6463.htm",
+      ],
     },
     {
       name: "補助金・助成金・給付金",
@@ -1037,6 +1438,9 @@
       keywords: ["補助金", "助成金", "雇用調整助成金", "持続化給付金", "奨励金"],
       desc: "国・地方公共団体等からの補助金等は対価性がなく不課税。",
       note: "補助金で購入した資産も課税仕入れとして控除可能（特定収入の調整は国・地方公共団体・公益法人等のみ）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
+      ],
     },
     {
       name: "保険金・共済金の受取",
@@ -1045,6 +1449,10 @@
       accounts: ["雑収入", "受取保険金"],
       keywords: ["保険金", "共済金", "損害保険金", "満期保険金"],
       desc: "保険事故の発生に伴う受取は資産の譲渡等の対価ではないため不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/15.htm",
+      ],
     },
     {
       name: "受取配当金",
@@ -1054,6 +1462,9 @@
       keywords: ["配当", "剰余金の配当", "分配金"],
       desc: "株主の地位に基づく配当は対価性がなく不課税。",
       note: "公社債投資信託等の収益分配金は利子に類するものとして非課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
+      ],
     },
     {
       name: "損害賠償金・違約金",
@@ -1063,6 +1474,12 @@
       keywords: ["賠償金", "慰謝料", "違約金", "キャンセル料", "遅延損害金", "示談金"],
       desc: "心身・資産に加えられた損害の補塡、逸失利益の補塡としての賠償金は不課税。",
       note: "実質的に資産の譲渡等の対価となるもの（損害を受けた棚卸資産を加害者に引き渡す場合、特許権侵害に伴う実施料相当額、明渡し遅延の家賃相当額等）は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6257.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/15.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/23.htm",
+      ],
     },
     {
       name: "立退料（借家人が受け取るもの）",
@@ -1081,6 +1498,10 @@
       keywords: ["敷金", "保証金", "預け金", "デポジット"],
       desc: "返還される敷金・保証金は預け金であり不課税。",
       note: "返還されない部分（償却・敷引き）は、事業用なら課税・住宅なら非課税。原状回復費用は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/06.htm",
+      ],
     },
     {
       name: "租税公課（固定資産税・自動車税・印紙税等）",
@@ -1090,6 +1511,9 @@
       keywords: ["固定資産税", "自動車税", "重量税", "登録免許税", "住民税", "事業税", "不動産取得税", "法人税"],
       desc: "税金の納付は資産の譲渡等の対価ではなく不課税。",
       note: "不動産売買時の固定資産税の精算金は、売買代金の一部として課税（建物）・非課税（土地）となる。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/33.htm",
+      ],
     },
     {
       name: "入湯税・宿泊税・ゴルフ場利用税・軽油引取税",
@@ -1099,6 +1523,9 @@
       keywords: ["入湯税", "宿泊税", "ゴルフ場利用税", "軽油引取税"],
       desc: "利用者が納税義務者となる税で、領収書等で明確に区分されていれば不課税。",
       note: "区分されていない場合は全体を課税仕入れとして扱う。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
+      ],
     },
     {
       name: "罰金・交通反則金・延滞税",
@@ -1168,6 +1595,9 @@
       keywords: ["町内会費", "自治会費", "商工会議所", "同業者団体", "組合費", "協会費"],
       desc: "団体の通常の業務運営のための会費で、明確な対価関係がないものは不課税。",
       note: "研修・情報誌等の明確な対価となる会費は課税。団体からの通知に従って判定する。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6467.htm",
+      ],
     },
     {
       name: "試供品・見本品の無償提供",
@@ -1177,6 +1607,9 @@
       keywords: ["サンプル", "無償提供", "無料配布", "景品"],
       desc: "無償の提供は対価がないため不課税（その購入・製造費用は課税仕入れ）。",
       note: "個人事業者の家事消費、法人の役員への贈与は「みなし譲渡」として課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
+      ],
     },
     {
       name: "お布施・戒名料・玉串料",
@@ -1186,6 +1619,9 @@
       keywords: ["お布施", "戒名", "玉串料", "初穂料", "お賽銭"],
       desc: "宗教活動に伴う喜捨は対価性がなく不課税。",
       note: "宗教法人が行う物品販売や駐車場経営などは課税となる場合がある。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/30.htm",
+      ],
     },
     {
       name: "国外取引（海外での仕入・役務）",
@@ -1195,6 +1631,10 @@
       keywords: ["海外", "国外", "三国間貿易", "海外支店"],
       desc: "資産の所在地・役務の提供地が国外の取引は国内取引に当たらず不課税。",
       note: "国外事業者からのインターネット経由のサービス（電気通信利用役務）は、受け手の住所等で内外判定する。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6210.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6105.htm",
+      ],
     },
     {
       name: "海外出張の現地費用",
@@ -1204,6 +1644,9 @@
       keywords: ["海外出張", "現地宿泊", "現地交通費", "海外旅行"],
       desc: "国外で受ける宿泊・交通・飲食等は国外取引として不課税。",
       note: "国際線航空券は免税。海外旅行保険は非課税。日本の旅行会社のパッケージは国内部分のみ課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6459.htm",
+      ],
     },
     {
       name: "電子マネー・交通系ICカードへのチャージ",
@@ -1222,6 +1665,106 @@
       keywords: ["移転補償", "収益補償", "経費補償", "休業補償"],
       desc: "収益補償金・経費補償金・移転補償金等は資産の譲渡の対価ではなく不課税。",
       note: "収用により資産を譲渡して受け取る「対価補償金」は資産の譲渡等の対価となる（建物は課税、土地は非課税）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6145.htm",
+      ],
+    },
+
+    {
+      name: "出向者の給与負担金",
+      kana: "しゅっこうしゃのきゅうよふたんきん",
+      cat: "fu",
+      accounts: ["給料手当", "出向者負担金"],
+      keywords: ["出向", "在籍出向", "給与負担金", "経営指導料"],
+      desc: "出向先が出向元に支払う給与負担金は、出向者に給与を支給したものとして扱われ課税関係は生じない（不課税）。",
+      note: "出向者の旅費・通勤費・日当等を区別して支払う場合は、出向先の課税仕入れ。人材派遣（派遣先と雇用関係がない）の派遣料は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6475.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/07.htm",
+      ],
+    },
+    {
+      name: "住居手当",
+      kana: "じゅうきょてあて",
+      cat: "fu",
+      accounts: ["給料手当"],
+      keywords: ["家賃補助", "住宅手当"],
+      desc: "住居手当は給与等に該当し、事業遂行上直接必要なものとはいえないため課税仕入れにならない。",
+      note: "通勤に通常必要な通勤手当は課税仕入れ。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/04.htm",
+      ],
+    },
+    {
+      name: "チップ",
+      kana: "ちっぷ",
+      cat: "fu",
+      accounts: ["旅費交通費", "交際費"],
+      keywords: ["心付け", "運転手"],
+      desc: "運転手等へのチップは役務の提供の対価とは別に支払うもので、明白な対価関係がないため課税仕入れに当たらない。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/31.htm",
+      ],
+    },
+    {
+      name: "建物賃貸借の中途解約違約金",
+      kana: "たてものちんたいしゃくのちゅうとかいやくいやくきん",
+      cat: "fu",
+      accounts: ["雑収入", "雑損失"],
+      keywords: ["中途解約", "解約違約金", "家賃相当額"],
+      desc: "中途解約に伴い賃貸人が受け取る数か月分の家賃相当額の違約金は、逸失利益を補塡する損害賠償金として不課税。",
+      note: "保証金から差し引く原状回復費用は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6261.htm",
+      ],
+    },
+    {
+      name: "早期完済割引料",
+      kana: "そうきかんさいわりびきりょう",
+      cat: "fu",
+      accounts: ["雑収入"],
+      keywords: ["繰上弁済", "繰上返済", "延払販売"],
+      desc: "延払販売で得意先が繰上弁済したことにより徴収する早期完済割引料は、逸失利益を補塡する損害賠償金として不課税。",
+      note: "1件当たり定額で徴収するものは解約手数料として課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/02/14.htm",
+      ],
+    },
+    {
+      name: "社員食堂での食事の無償提供",
+      kana: "しゃいんしょくどうでのしょくじのむしょうていきょう",
+      cat: "fu",
+      accounts: ["福利厚生費"],
+      keywords: ["社員食堂", "まかない", "従業員の食事"],
+      desc: "社員食堂で従業員に無償で食事を提供する場合は対価の授受がなく、資産の譲渡等に当たらない（不課税）。",
+      note: "有償で提供する場合は、市場価格より安くても徴収する食事代金が課税対象。直営食堂の原材料・水道光熱費や運営委託費は課税仕入れ（従業員の給与は除く）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6471.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/16/10.htm",
+      ],
+    },
+    {
+      name: "三国間貿易（国外で仕入れて国外で販売）",
+      kana: "さんごくかんぼうえき",
+      cat: "fu",
+      accounts: ["売上高", "仕入高"],
+      keywords: ["仲介貿易", "国外取引"],
+      desc: "国外で購入した資産を国内に搬入せずに他へ譲渡する三国間貿易は、国外に所在する資産の譲渡であり国外取引として不課税（経理処理にかかわらない）。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6210.htm",
+      ],
+    },
+    {
+      name: "産業医の報酬（開業医個人に支払うもの）",
+      kana: "さんぎょういのほうしゅう",
+      cat: "fu",
+      accounts: ["支払報酬", "福利厚生費"],
+      keywords: ["産業医", "嘱託医"],
+      desc: "開業医（個人）が事業者から受ける産業医としての報酬は、原則として給与収入となり不課税。",
+      note: "医療法人が勤務医を産業医として派遣して受け取る委託料は課税。",
+      refs: [
+        "https://www.nta.go.jp/law/shitsugi/shohi/13/01.htm",
+      ],
     },
 
     /* ===================== 免税（0%） ===================== */
@@ -1233,6 +1776,10 @@
       keywords: ["輸出", "海外販売", "越境EC", "貿易"],
       desc: "本邦からの輸出として行う資産の譲渡は輸出免税（0%）。",
       note: "輸出許可書・税関の証明等の保存が免税の要件。輸出のための仕入れは仕入税額控除できる。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6205.htm",
+      ],
     },
     {
       name: "国際線航空券・国際輸送",
@@ -1242,6 +1789,10 @@
       keywords: ["国際線", "海外航空券", "国際貨物", "船便", "国際宅配便", "EMS"],
       desc: "国内と国外にわたる旅客・貨物の輸送は免税。",
       note: "燃油サーチャージは航空券と同様に免税。空港までの国内移動は課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/11/04.htm",
+      ],
     },
     {
       name: "国際電話・国際郵便",
@@ -1250,6 +1801,9 @@
       accounts: ["通信費"],
       keywords: ["国際電話", "国際郵便", "エアメール", "海外発送"],
       desc: "国内と国外との間の通信・郵便は免税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
+      ],
     },
     {
       name: "非居住者への役務の提供",
@@ -1258,7 +1812,12 @@
       accounts: ["売上高"],
       keywords: ["海外企業", "海外クライアント", "非居住者", "外国法人", "コンサルティング"],
       desc: "非居住者に対する役務の提供は、原則として輸出免税。",
-      note: "国内での飲食・宿泊、国内の資産の運送・保管など、国内で直接便益を享受するものは課税。非居住者への国内の電気通信利用役務の提供は国外取引として不課税。",
+      note: "国内での飲食・宿泊、国内の資産の運送・保管など、国内で直接便益を享受するものは課税。2026年10月1日以後は国内不動産の売買・交換・貸借の代理・媒介も課税（同年3月31日までに締結した契約に基づくものを除く）。国内に支店等がある非居住者への提供も原則課税。非居住者への国内の電気通信利用役務の提供は国外取引として不課税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6567.htm",
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
+        "https://www.nta.go.jp/law/shitsugi/shohi/11/02.htm",
+      ],
     },
     {
       name: "非居住者への無形固定資産の譲渡・貸付け",
@@ -1267,6 +1826,9 @@
       accounts: ["売上高", "受取ロイヤリティ"],
       keywords: ["特許権", "商標権", "著作権", "ライセンス料", "ロイヤリティ"],
       desc: "非居住者に対する特許権・著作権等の譲渡・貸付けは輸出免税。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
+      ],
     },
     {
       name: "外国人旅行者向け免税販売（輸出物品販売場）",
@@ -1276,6 +1838,9 @@
       keywords: ["インバウンド", "免税店", "Tax Free", "訪日外国人", "リファンド方式"],
       desc: "輸出物品販売場の許可を受けた事業者が、外国人旅行者等に一定の方法で販売するものは免税。",
       note: "2026年11月1日から、購入時は消費税相当額を受け取り出国時に確認後返金する「リファンド方式」へ移行予定。最新の要件を確認すること。",
+      refs: [
+        "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6559.htm",
+      ],
     },
     {
       name: "外航船舶・航空機の譲渡・貸付け・修理",

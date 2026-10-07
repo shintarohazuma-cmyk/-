@@ -83,10 +83,15 @@ main, .site-header > *, .site-footer {
   color: var(--muted);
   font: inherit;
   font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
 }
 
 .tab.is-active { color: var(--accent); border-bottom-color: var(--accent); }
+
+@media (max-width: 480px) {
+  .tab { font-size: 0.82rem; white-space: nowrap; }
+}
 
 .panel { padding-top: 16px; padding-bottom: 32px; }
 
@@ -136,7 +141,7 @@ main, .site-header > *, .site-footer {
   .chip.is-active { color: #12151b; }
 }
 
-#account-filter {
+#account-filter, .select {
   max-width: 100%;
   padding: 6px 8px;
   border: 1px solid var(--border);
@@ -291,7 +296,24 @@ details[open] > .item-head::after { content: "－"; }
 
 .plain-list { margin: 0; padding-left: 1.4em; }
 .plain-list li { margin-bottom: 4px; }
+.plain-list a { color: var(--accent); }
 
 .disclaimer { margin-top: 16px; color: var(--muted); font-size: 0.85rem; }
+
+/* 国税庁の記事 */
+.article { border-left-color: var(--accent); }
+.article-head { align-items: flex-start; }
+.article-title { display: flex; flex-direction: column; gap: 2px; }
+.article-no, .article-asof { color: var(--muted); font-size: 0.8rem; font-weight: 600; }
+.article-asof { margin: 0; }
+.article-type { flex-shrink: 0; min-width: 7.5em; color: var(--accent); background: var(--bg); }
+.article-summary { margin: 0 0 8px; font-size: 0.92rem; }
+.article-link, .refs a { color: var(--accent); font-weight: 600; word-break: break-all; }
+.refs { margin: 8px 0 0; padding: 0; list-style: none; font-size: 0.9rem; }
+.refs li { margin-top: 4px; }
+.refs-title { margin: 10px 0 0; font-size: 0.88rem; font-weight: 700; }
+.source { margin-top: 16px; color: var(--muted); font-size: 0.82rem; }
+.source a { color: inherit; }
+.more { margin-top: 10px; }
 
 .site-footer { padding-bottom: 24px; color: var(--muted); font-size: 0.8rem; }

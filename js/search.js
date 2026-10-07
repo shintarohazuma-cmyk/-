@@ -74,7 +74,52 @@
     });
   }
 
-  var api = { normalize: normalize, search: search };
+  /* ---------- 国税庁の記事 ---------- */
+
+  // 1語に対する記事のスコア（0 = 一致なし）。番号は「No.6201」「6201」どちらでも可
+  function scoreArticle(article, term) {
+    var no = normalize(article.no);
+    var bare = term.replace(/^no/, "");
+    if (bare && (no === bare || no === term)) return 100;
+    var title = normalize(article.title);
+    if (title === term) return 90;
+    if (title.indexOf(term) === 0) return 70;
+    if (title.indexOf(term) >= 0) return 60;
+    if (bare && no.indexOf(bare) === 0) return 40;
+    if (normalize(article.category).indexOf(term) >= 0) return 30;
+    if (normalize(article.summary).indexOf(term) >= 0) return 15;
+    return 0;
+  }
+
+  /*
+   * 国税庁の記事を検索する（番号・タイトル・分類・要旨）。
+   * options.type     : 種別（taxanswer / qa）で絞り込み
+   * options.category : 分類で絞り込み
+   */
+  function searchArticles(articles, query, options) {
+    options = options || {};
+    var terms = splitTerms(query);
+    var results = [];
+    articles.forEach(function (article, index) {
+      if (options.type && article.type !== options.type) return;
+      if (options.category && article.category !== options.category) return;
+      var total = 0;
+      for (var i = 0; i < terms.length; i++) {
+        var s = scoreArticle(article, terms[i]);
+        if (!s) return;
+        total += s;
+      }
+      results.push({ item: article, score: total, index: index });
+    });
+    results.sort(function (a, b) {
+      return b.score - a.score || a.index - b.index;
+    });
+    return results.map(function (r) {
+      return r.item;
+    });
+  }
+
+  var api = { normalize: normalize, search: search, searchArticles: searchArticles };
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
