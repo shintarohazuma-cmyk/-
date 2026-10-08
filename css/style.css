@@ -90,7 +90,9 @@ main, .site-header > *, .site-footer {
 .tab.is-active { color: var(--accent); border-bottom-color: var(--accent); }
 
 @media (max-width: 480px) {
-  .tab { font-size: 0.82rem; white-space: nowrap; }
+  .tabs { overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 1 0 auto; padding: 10px 8px; font-size: 0.82rem; white-space: nowrap; }
 }
 
 .panel { padding-top: 16px; padding-bottom: 32px; }
@@ -320,5 +322,8 @@ details[open] > .item-head::after { content: "－"; }
 .source { margin-top: 16px; color: var(--muted); font-size: 0.82rem; }
 .source a { color: inherit; }
 .more { margin-top: 10px; }
+.article-status { margin: 0; color: var(--k10); font-size: 0.85rem; font-weight: 700; }
+.is-abolished { opacity: 0.8; }
+.is-abolished .article-type::after { content: "（廃止）"; }
 
 .site-footer { padding-bottom: 24px; color: var(--muted); font-size: 0.8rem; }

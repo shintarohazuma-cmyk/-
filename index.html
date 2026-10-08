@@ -14,6 +14,7 @@
       <button class="tab is-active" role="tab" data-tab="dict" aria-selected="true">辞書</button>
       <button class="tab" role="tab" data-tab="flow" aria-selected="false">判定フロー</button>
       <button class="tab" role="tab" data-tab="guide" aria-selected="false">区分の解説</button>
+      <button class="tab" role="tab" data-tab="tsu" aria-selected="false">通達</button>
       <button class="tab" role="tab" data-tab="nta" aria-selected="false">国税庁の記事</button>
     </nav>
   </header>
@@ -74,6 +75,22 @@
       <p class="disclaimer">本辞書は一般的な取扱いをまとめたもので、個別の契約内容や事実関係によって区分が変わることがあります。最終的な判断は国税庁の資料や税理士にご確認ください。</p>
     </section>
 
+    <!-- 通達 -->
+    <section id="tab-tsu" class="panel" role="tabpanel" hidden>
+      <div class="search-box">
+        <input id="tsu-q" type="search" placeholder="例：5-1-1、事業として、住宅の貸付け、一体資産" autocomplete="off" aria-label="通達を検索">
+      </div>
+      <div class="filters">
+        <div id="tsu-type-filters" class="chips" aria-label="種別で絞り込み"></div>
+        <select id="tsu-category-filter" class="select" aria-label="章・通達で絞り込み">
+          <option value="">すべての分類</option>
+        </select>
+      </div>
+      <p id="tsu-count" class="count"></p>
+      <ul id="tsu-results" class="results"></ul>
+      <p class="source">出典：<a href="https://www.nta.go.jp/law/tsutatsu/kihon/shohi/01.htm" target="_blank" rel="noopener">消費税法基本通達</a>・<a href="https://www.nta.go.jp/law/tsutatsu/kobetsu/kansetsu/syouhi.htm" target="_blank" rel="noopener">間接税関係 個別通達</a>（国税庁ホームページ）　取得日：<span id="tsu-fetched"></span><br>本文は各項目の冒頭部分を抜粋したものです。注書きや改正経過を含む全文は、必ずリンク先の原文でご確認ください。取扱通達には廃止されたものも含みます（「廃止」と表示）。</p>
+    </section>
+
     <!-- 国税庁の記事 -->
     <section id="tab-nta" class="panel" role="tabpanel" hidden>
       <div class="search-box">
@@ -97,6 +114,7 @@
 
   <script src="js/data.js"></script>
   <script src="js/nta.js"></script>
+  <script src="js/tsutatsu.js"></script>
   <script src="js/search.js"></script>
   <script src="js/app.js"></script>
 </body>
