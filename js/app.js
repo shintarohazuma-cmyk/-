@@ -2,6 +2,7 @@
   "use strict";
 
   var CATEGORIES = TAX_DATA.CATEGORIES;
+  var KANI_TYPES = TAX_DATA.KANI_TYPES;
   var ITEMS = TAX_DATA.ITEMS;
   var CAT_ORDER = ["k10", "k8", "hi", "fu", "men"];
   var NTA = typeof NTA_DATA !== "undefined" ? NTA_DATA : { FETCHED_AT: "", TYPES: {}, ARTICLES: [] };
@@ -128,10 +129,51 @@
     return el("div", {}, [el("p", { class: "refs-title", text: "関連する通達" }), list]);
   }
 
+  // 簡易課税の事業区分（この取引を売上げとして行った場合の区分とみなし仕入率）
+  function renderKani(item) {
+    var children = [el("p", { class: "examples-title", text: "簡易課税の事業区分" })];
+    if (item.kani && item.kani.length) {
+      var list = el("ul", { class: "kani" });
+      item.kani
+        .map(function (row, i) {
+          return { type: row[0], text: row[1], i: i };
+        })
+        .sort(function (a, b) {
+          return a.type - b.type || a.i - b.i;
+        })
+        .forEach(function (row) {
+          var t = KANI_TYPES[row.type];
+          list.appendChild(
+            el("li", { class: "kani-row" }, [
+              el("span", { class: "kani-type kani-" + row.type }, [
+                el("span", { text: t.label.replace("事業", "") + " " + t.rate }),
+                el("span", { class: "kani-kind", text: t.kind }),
+              ]),
+              el("span", { class: "kani-text", text: row.text }),
+            ])
+          );
+        });
+      children.push(list);
+      children.push(
+        el("p", { class: "kani-note" }, [
+          externalLink("https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6509.htm", "事業区分の考え方（タックスアンサー No.6509）"),
+        ])
+      );
+    }
+    var note = item.kaniNote;
+    if (!note && (item.cat === "hi" || item.cat === "fu")) {
+      note = CATEGORIES[item.cat].short + "の取引は課税売上げに当たらないため、簡易課税の事業区分の対象外です（みなし仕入率の計算に含めません）。";
+    }
+    if (note) children.push(el("p", { class: "kani-note", text: note }));
+    if (children.length === 1) return null;
+    return el("div", { class: "examples-block" }, children);
+  }
+
   function renderItem(item) {
     var body = el("div", { class: "item-body" }, [
       el("p", { class: "item-desc", text: item.desc }),
       renderExamples(item),
+      renderKani(item),
       item.note ? el("p", { class: "item-note", text: item.note }) : null,
       el("dl", { class: "item-meta" }, [
         el("dt", { text: "勘定科目" }),

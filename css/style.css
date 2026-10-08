@@ -194,6 +194,11 @@ details[open] > .item-head::after { content: "－"; }
 .examples-title { margin: 0 0 2px; font-size: 0.88rem; font-weight: 700; }
 .examples { margin: 0; padding-left: 1.3em; font-size: 0.92rem; }
 .examples li { margin-bottom: 2px; }
+.kani { margin: 0; padding: 0; list-style: none; font-size: 0.92rem; }
+.kani-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; }
+.kani-type { flex-shrink: 0; min-width: 5.6em; padding: 1px 6px; border-radius: 6px; background: var(--bg); color: var(--accent); font-size: 0.8rem; font-weight: 700; text-align: center; white-space: nowrap; display: flex; flex-direction: column; line-height: 1.3; }
+.kani-kind { font-size: 0.7rem; font-weight: 600; color: var(--muted); }
+.kani-note { margin: 0; color: var(--muted); font-size: 0.88rem; }
 
 .item-note {
   margin: 0 0 8px;
