@@ -17,6 +17,7 @@
  *   desc     : 判定の理由・説明
  *   examples : 具体例
  *   note     : 注意点（任意）
+ *   tsutatsu : 関連する消費税法基本通達の番号（任意。js/tsutatsu.js に収録されているもの）
  *   refs     : 国税庁の関連記事のURL（任意。js/nta.js に収録されているもの）
  */
 (function (root) {
@@ -70,6 +71,7 @@
         "封筒・クリアファイル",
         "名刺の印刷代",
       ],
+      tsutatsu: ["11－1－1"],
     },
     {
       name: "パソコン・備品の購入",
@@ -84,6 +86,7 @@
         "複合機・プリンターの購入",
         "業務用スマートフォン本体",
       ],
+      tsutatsu: ["11－1－1", "11－3－3"],
     },
     {
       name: "商品の仕入・販売（食品以外）",
@@ -100,6 +103,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6145.htm",
       ],
+      tsutatsu: ["5－2－1", "9－1－1"],
     },
     {
       name: "事務所・店舗の家賃",
@@ -120,6 +124,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6149.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/05/06.htm",
       ],
+      tsutatsu: ["6－1－5", "9－1－20"],
     },
     {
       name: "共益費・管理費（事業用物件）",
@@ -136,6 +141,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/02/22.htm",
       ],
+      tsutatsu: ["10－1－14"],
     },
     {
       name: "礼金・更新料（事業用物件）",
@@ -153,6 +159,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
       ],
+      tsutatsu: ["5－4－3", "9－1－23"],
     },
     {
       name: "月極駐車場・コインパーキング",
@@ -170,6 +177,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6213.htm",
       ],
+      tsutatsu: ["6－1－5", "6－1－4"],
     },
     {
       name: "電気・ガス・水道料金",
@@ -198,6 +206,7 @@
         "固定電話の基本料・通話料",
       ],
       note: "国際電話は免税。",
+      tsutatsu: ["5－5－12"],
     },
     {
       name: "宅配便・運送料（国内）",
@@ -226,6 +235,7 @@
         "書留・速達の料金",
       ],
       note: "自ら使用する切手は、継続適用を条件に購入時に課税仕入れとすることも認められる。",
+      tsutatsu: ["11－3－7", "11－4－3"],
     },
     {
       name: "電車・バス・タクシー代（国内）",
@@ -240,6 +250,7 @@
         "ICカードで乗車した分の運賃",
       ],
       note: "交通系ICカードへのチャージ時点は不課税（前払）で、乗車時に課税仕入れ。3万円未満の公共交通機関の運賃はインボイス不要（帳簿のみ保存）。",
+      tsutatsu: ["1－8－13"],
     },
     {
       name: "国内線航空券",
@@ -272,6 +283,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/18/08.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/16/03.htm",
       ],
+      tsutatsu: ["11－6－4"],
     },
     {
       name: "通勤手当",
@@ -289,6 +301,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6459.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/16/04.htm",
       ],
+      tsutatsu: ["11－6－5"],
     },
     {
       name: "ホテル・旅館の宿泊費（国内）",
@@ -307,6 +320,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
       ],
+      tsutatsu: ["10－1－11"],
     },
     {
       name: "ガソリン代",
@@ -322,6 +336,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
       ],
+      tsutatsu: ["10－1－11"],
     },
     {
       name: "軽油代",
@@ -337,6 +352,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
       ],
+      tsutatsu: ["10－1－11"],
     },
     {
       name: "高速道路料金・ETC",
@@ -367,6 +383,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/02/41.htm",
       ],
+      tsutatsu: ["11－3－3"],
     },
     {
       name: "車検・修理・整備費用",
@@ -422,6 +439,7 @@
         "ノベルティグッズ",
       ],
       note: "国外事業者のウェブ広告（事業者向け電気通信利用役務）はリバースチャージ方式の対象。",
+      tsutatsu: ["5－8－4"],
     },
     {
       name: "外注費・業務委託料",
@@ -440,6 +458,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6153.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6475.htm",
       ],
+      tsutatsu: ["1－1－1", "11－1－2"],
     },
     {
       name: "税理士・弁護士・司法書士報酬",
@@ -460,6 +479,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/02/12.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/14/08.htm",
       ],
+      tsutatsu: ["10－1－4"],
     },
     {
       name: "振込手数料",
@@ -490,6 +510,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6153.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6567.htm",
       ],
+      tsutatsu: ["6－1－6", "9－1－10"],
     },
     {
       name: "建物の購入・売却",
@@ -508,6 +529,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6145.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/14/04.htm",
       ],
+      tsutatsu: ["10－1－5", "11－4－2", "10－1－6"],
     },
     {
       name: "固定資産の売却（車両・備品等）",
@@ -526,6 +548,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/02/02.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6305.htm",
       ],
+      tsutatsu: ["5－1－7", "10－1－17", "9－1－13"],
     },
     {
       name: "リース料",
@@ -545,6 +568,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/06/06.htm",
       ],
+      tsutatsu: ["5－1－9", "11－3－2"],
     },
     {
       name: "レンタル料・賃借料",
@@ -561,6 +585,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6149.htm",
       ],
+      tsutatsu: ["5－4－2"],
     },
     {
       name: "ソフトウェア・クラウドサービス利用料（国内事業者）",
@@ -579,6 +604,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6118.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6210.htm",
       ],
+      tsutatsu: ["5－8－3", "5－7－15の2"],
     },
     {
       name: "国外事業者からのウェブ広告・クラウド（事業者向け）",
@@ -598,6 +624,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/26/06.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/26/07.htm",
       ],
+      tsutatsu: ["5－8－4", "10－2－1", "11－4－6"],
     },
     {
       name: "輸入消費税（輸入時に税関に納付）",
@@ -613,6 +640,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6563.htm",
       ],
+      tsutatsu: ["5－6－1", "11－3－9"],
     },
     {
       name: "飲食店での会食・接待",
@@ -630,6 +658,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6463.htm",
       ],
+      tsutatsu: ["5－9－6", "5－9－7"],
     },
     {
       name: "店内飲食（イートイン）",
@@ -647,6 +676,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－10", "5－9－7"],
     },
     {
       name: "ケータリング・出張料理",
@@ -664,6 +694,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－11"],
     },
     {
       name: "ホテルのルームサービス・カラオケ店の飲食",
@@ -681,6 +712,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－9"],
     },
     {
       name: "酒類（ビール・ワイン・日本酒等）",
@@ -699,6 +731,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "本みりん・料理酒（酒類に該当するもの）",
@@ -712,6 +745,7 @@
         "酒類に該当する料理酒",
       ],
       note: "みりん風調味料（アルコール1度未満）や、塩を加えて飲用できない加工をした料理酒は8%。",
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "医薬品・医薬部外品",
@@ -729,6 +763,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "ペットフード",
@@ -741,6 +776,7 @@
         "ドッグフード・キャットフード",
         "家畜の飼料",
       ],
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "生きている牛・豚（肉用）",
@@ -753,6 +789,7 @@
         "肉用牛・豚の生体の売買",
       ],
       note: "活魚（生きた魚介類）は食品に該当し8%。",
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "栽培用の種子・苗木",
@@ -767,6 +804,7 @@
         "花の球根・観葉植物",
       ],
       note: "食用として販売される果物・野菜・米（もみ）等は8%。",
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "水道水",
@@ -779,6 +817,7 @@
         "水道料金（飲用分を含む）",
       ],
       note: "ペットボトル等で販売されるミネラルウォーターは8%。",
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "ドライアイス・保冷剤",
@@ -793,6 +832,7 @@
         "保冷用の氷（食用でないもの）",
       ],
       note: "食用氷（かき氷用・ロックアイス等）は8%。",
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "書籍・雑誌",
@@ -809,6 +849,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－13"],
     },
     {
       name: "新聞（コンビニ・駅売店で購入）",
@@ -824,6 +865,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－13"],
     },
     {
       name: "電子版新聞",
@@ -836,6 +878,7 @@
         "新聞の電子版（デジタル版）の購読料",
       ],
       note: "紙と電子版のセット販売は、それぞれの対価を区分する必要がある。",
+      tsutatsu: ["5－9－13"],
     },
     {
       name: "セミナー・研修参加費",
@@ -871,6 +914,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6467.htm",
       ],
+      tsutatsu: ["5－5－3", "5－5－4", "5－5－5", "11－2－4", "11－2－5"],
     },
     {
       name: "ゴルフ会員権の譲渡",
@@ -889,6 +933,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6249.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/02/19.htm",
       ],
+      tsutatsu: ["6－2－1", "5－5－5"],
     },
     {
       name: "接待ゴルフ（プレー代）",
@@ -907,6 +952,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6249.htm",
       ],
+      tsutatsu: ["10－1－11"],
     },
     {
       name: "社員旅行（国内）",
@@ -933,6 +979,7 @@
         "人間ドック",
         "ストレスチェックの委託料",
       ],
+      tsutatsu: ["6－6－1"],
     },
     {
       name: "自由診療（美容整形・審美歯科等）",
@@ -948,6 +995,7 @@
         "レーシック",
       ],
       note: "保険診療の一部負担金は非課税。",
+      tsutatsu: ["6－6－1", "6－6－3"],
     },
     {
       name: "任意の予防接種",
@@ -960,6 +1008,7 @@
         "任意のインフルエンザ予防接種（職場接種を含む）",
         "海外渡航前のワクチン接種",
       ],
+      tsutatsu: ["6－6－1"],
     },
     {
       name: "葬儀費用（祭壇・会場・飲食等）",
@@ -974,6 +1023,7 @@
         "通夜・告別式での飲食の提供",
       ],
       note: "火葬料・埋葬料は非課税。お布施・戒名料は不課税。",
+      tsutatsu: ["6－9－1"],
     },
     {
       name: "供花・花輪・お祝いの品",
@@ -988,6 +1038,7 @@
         "食品以外のお祝いの品",
       ],
       note: "現金の祝金・香典・見舞金は不課税。食品の贈答品は8%。",
+      tsutatsu: ["11－2－17"],
     },
     {
       name: "学習塾・予備校・英会話教室",
@@ -1007,6 +1058,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/10/03.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/10/04.htm",
       ],
+      tsutatsu: ["6－11－1", "6－11－4"],
     },
     {
       name: "解約手数料・取消手数料",
@@ -1023,6 +1075,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6253.htm",
       ],
+      tsutatsu: ["5－5－2", "5－2－5"],
     },
     {
       name: "クレジットカード年会費",
@@ -1055,6 +1108,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/14/03.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/14/09.htm",
       ],
+      tsutatsu: ["5－3－1", "5－3－2", "5－3－5", "10－1－2", "10－1－18"],
     },
 
     {
@@ -1073,6 +1127,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6475.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/02/08.htm",
       ],
+      tsutatsu: ["5－5－11"],
     },
     {
       name: "原状回復費用（保証金から差し引くもの）",
@@ -1104,6 +1159,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6261.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/02/23.htm",
       ],
+      tsutatsu: ["5－2－5"],
     },
     {
       name: "電柱の広告使用料",
@@ -1136,6 +1192,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6479.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/02/24.htm",
       ],
+      tsutatsu: ["5－5－7", "11－2－7"],
     },
     {
       name: "生命保険料の給与引去手数料",
@@ -1150,6 +1207,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/02/29.htm",
       ],
+      tsutatsu: ["6－3－2"],
     },
     {
       name: "金銭貸付時の契約締結料・事務手数料",
@@ -1182,6 +1240,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/02/41.htm",
       ],
+      tsutatsu: ["10－1－6"],
     },
 
     /* ===================== 軽減税率 8% ===================== */
@@ -1201,6 +1260,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "弁当・惣菜のテイクアウト",
@@ -1219,6 +1279,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－10"],
     },
     {
       name: "出前・宅配（ピザ・寿司等）",
@@ -1236,6 +1297,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－11"],
     },
     {
       name: "会議用のお弁当・お茶",
@@ -1249,6 +1311,7 @@
         "来客用のペットボトルのお茶",
         "社内で食べるために買うお菓子",
       ],
+      tsutatsu: ["5－9－6"],
     },
     {
       name: "自動販売機の飲料・食品",
@@ -1261,6 +1324,7 @@
         "自販機の缶コーヒー・ジュース",
         "自販機のパン・カップ麺",
       ],
+      tsutatsu: ["5－9－5"],
     },
     {
       name: "ミネラルウォーター・ウォーターサーバーの水",
@@ -1274,6 +1338,7 @@
         "ウォーターサーバーのボトル水",
       ],
       note: "ウォーターサーバーのレンタル料は10%。水道水は10%。",
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "コーヒー豆・茶葉",
@@ -1286,6 +1351,7 @@
         "コーヒー豆・インスタントコーヒー",
         "紅茶・緑茶の茶葉・ティーバッグ",
       ],
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "食用氷",
@@ -1299,6 +1365,7 @@
         "ロックアイス",
       ],
       note: "ドライアイスや保冷用の氷は10%。",
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "ノンアルコールビール・甘酒",
@@ -1311,6 +1378,7 @@
         "ノンアルコールビール（アルコール分1度未満）",
         "甘酒（アルコール分1度未満）",
       ],
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "食品の贈答品（お中元・お歳暮）",
@@ -1325,6 +1393,7 @@
         "食品のギフトセット（酒類を除く）",
       ],
       note: "酒類や、食品以外のギフトは10%。カタログギフトは商品券的なものかどうかで判定が変わる。",
+      tsutatsu: ["5－9－1", "5－9－2"],
     },
     {
       name: "一体資産（おもちゃ付き菓子・ティーバッグ付きマグ等）",
@@ -1342,6 +1411,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－3", "5－9－4"],
     },
     {
       name: "新聞の定期購読",
@@ -1358,6 +1428,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
       ],
+      tsutatsu: ["5－9－13"],
     },
     {
       name: "学校給食・有料老人ホームの食事",
@@ -1372,6 +1443,7 @@
         "サービス付き高齢者向け住宅で提供する一定金額以下の食事",
       ],
       note: "1食あたり・1日累計の金額基準等の要件がある（金額基準は改正されるため最新の基準を確認）。",
+      tsutatsu: ["5－9－12"],
     },
     {
       name: "活魚・生鮮魚介類",
@@ -1384,6 +1456,7 @@
         "生きたまま販売される魚・貝",
         "鮮魚・刺身用の魚",
       ],
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "特定保健用食品・栄養機能食品・サプリメント（食品）",
@@ -1398,6 +1471,7 @@
         "サプリメント・プロテイン（食品として販売されるもの）",
       ],
       note: "医薬品・医薬部外品に該当するものは10%。",
+      tsutatsu: ["5－9－1"],
     },
     {
       name: "映画館・遊園地の売店での飲食物",
@@ -1412,6 +1486,7 @@
         "遊園地のワゴンで買うアイス",
       ],
       note: "売店が管理するテーブル・椅子で飲食させる場合は10%。",
+      tsutatsu: ["5－9－7", "5－9－8"],
     },
 
     /* ===================== 非課税 ===================== */
@@ -1434,6 +1509,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6145.htm",
       ],
+      tsutatsu: ["6－1－1", "10－1－5"],
     },
     {
       name: "土地の貸付け（地代）",
@@ -1454,6 +1530,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6213.htm",
       ],
+      tsutatsu: ["6－1－1", "6－1－4", "6－1－5"],
     },
     {
       name: "借地権の設定・譲渡",
@@ -1472,6 +1549,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/05/04.htm",
       ],
+      tsutatsu: ["6－1－2", "6－1－3"],
     },
     {
       name: "住宅の家賃（1か月以上の貸付け）",
@@ -1494,6 +1572,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/09/01.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/19/10.htm",
       ],
+      tsutatsu: ["6－13－1", "6－13－4", "6－13－5", "6－13－7", "6－13－10", "6－13－11"],
     },
     {
       name: "住宅の礼金・更新料・共益費",
@@ -1515,6 +1594,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6226.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/09/02.htm",
       ],
+      tsutatsu: ["6－13－9", "6－13－2", "6－13－3"],
     },
     {
       name: "株式・社債・国債等の売却",
@@ -1534,6 +1614,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
       ],
+      tsutatsu: ["6－2－1"],
     },
     {
       name: "暗号資産の譲渡",
@@ -1551,6 +1632,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
       ],
+      tsutatsu: ["6－2－3"],
     },
     {
       name: "受取利息・支払利息",
@@ -1570,6 +1652,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
       ],
+      tsutatsu: ["6－3－1", "6－3－5"],
     },
     {
       name: "信用保証料",
@@ -1586,6 +1669,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
       ],
+      tsutatsu: ["6－3－1"],
     },
     {
       name: "保険料（生命保険・損害保険・自動車保険）",
@@ -1605,6 +1689,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
       ],
+      tsutatsu: ["6－3－1", "6－3－3", "6－3－2"],
     },
     {
       name: "クレジットカード加盟店手数料",
@@ -1622,6 +1707,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/06/02.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6221.htm",
       ],
+      tsutatsu: ["6－3－1"],
     },
     {
       name: "外国為替・両替手数料",
@@ -1638,6 +1724,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
       ],
+      tsutatsu: ["6－5－3"],
     },
     {
       name: "郵便切手・はがきの購入",
@@ -1656,6 +1743,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6229.htm",
       ],
+      tsutatsu: ["6－4－1", "6－4－2", "11－3－7"],
     },
     {
       name: "収入印紙・証紙の購入",
@@ -1672,6 +1760,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6229.htm",
       ],
+      tsutatsu: ["6－4－1"],
     },
     {
       name: "商品券・ギフトカード・プリペイドカードの購入",
@@ -1693,6 +1782,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/16/16.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6463.htm",
       ],
+      tsutatsu: ["6－4－3", "6－4－4", "6－4－5", "11－3－7", "11－4－3"],
     },
     {
       name: "行政手数料（住民票・印鑑証明・登記事項証明等）",
@@ -1712,6 +1802,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
       ],
+      tsutatsu: ["6－5－1", "6－5－2"],
     },
     {
       name: "社会保険診療（保険診療）",
@@ -1731,6 +1822,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/07/01.htm",
       ],
+      tsutatsu: ["6－6－1", "6－6－2", "6－6－3"],
     },
     {
       name: "介護保険サービス",
@@ -1750,6 +1842,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/08/06.htm",
       ],
+      tsutatsu: ["6－7－1", "6－7－2", "6－7－3"],
     },
     {
       name: "社会福祉事業",
@@ -1769,6 +1862,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6215.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/10/05.htm",
       ],
+      tsutatsu: ["6－7－5", "6－7－7", "6－7－7の2"],
     },
     {
       name: "助産（出産費用）",
@@ -1785,6 +1879,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
       ],
+      tsutatsu: ["6－8－1", "6－8－2", "6－8－3"],
     },
     {
       name: "火葬料・埋葬料",
@@ -1801,6 +1896,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6201.htm",
       ],
+      tsutatsu: ["6－9－1", "6－9－2"],
     },
     {
       name: "身体障害者用物品",
@@ -1821,6 +1917,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6214.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/10/02.htm",
       ],
+      tsutatsu: ["6－10－1", "6－10－2", "6－10－3", "6－10－4"],
     },
     {
       name: "学校の授業料・入学金・入学検定料",
@@ -1841,6 +1938,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6233.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/10/04.htm",
       ],
+      tsutatsu: ["6－11－1", "6－11－2", "6－11－3", "6－11－5"],
     },
     {
       name: "教科用図書（教科書）",
@@ -1856,6 +1954,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6233.htm",
       ],
+      tsutatsu: ["6－12－1", "6－12－3"],
     },
     {
       name: "国際郵便為替・外国為替",
@@ -1868,6 +1967,7 @@
         "国際郵便為替による送金",
         "国際郵便振替",
       ],
+      tsutatsu: ["6－5－3"],
     },
     {
       name: "社会保険料・労働保険料の会社負担分（法定福利費）",
@@ -1900,6 +2000,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/05/01.htm",
       ],
+      tsutatsu: ["6－1－7"],
     },
     {
       name: "中古車売買のリサイクル預託金相当額",
@@ -1916,6 +2017,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/02/41.htm",
       ],
+      tsutatsu: ["6－2－1"],
     },
     {
       name: "認可外保育施設の保育料（証明書交付施設）",
@@ -1934,6 +2036,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/10/05.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6215.htm",
       ],
+      tsutatsu: ["6－7－7の2"],
     },
     {
       name: "大学等の正規授業の聴講料（社員研修）",
@@ -1950,6 +2053,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/16/09.htm",
       ],
+      tsutatsu: ["6－11－1"],
     },
 
     /* ===================== 不課税（対象外） ===================== */
@@ -1971,6 +2075,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6475.htm",
       ],
+      tsutatsu: ["11－1－2"],
     },
     {
       name: "退職金",
@@ -1983,6 +2088,7 @@
         "従業員の退職金",
         "役員の退職慰労金",
       ],
+      tsutatsu: ["11－1－2"],
     },
     {
       name: "社会保険料・労働保険料の従業員負担分（給与天引きの預り金）",
@@ -2015,6 +2121,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6463.htm",
       ],
+      tsutatsu: ["5－2－14"],
     },
     {
       name: "祝金・香典・見舞金（現金）",
@@ -2034,6 +2141,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6463.htm",
       ],
+      tsutatsu: ["5－2－14"],
     },
     {
       name: "補助金・助成金・給付金",
@@ -2051,6 +2159,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
       ],
+      tsutatsu: ["5－2－15"],
     },
     {
       name: "保険金・共済金の受取",
@@ -2068,6 +2177,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/16/15.htm",
       ],
+      tsutatsu: ["5－2－4", "11－2－8"],
     },
     {
       name: "受取配当金",
@@ -2084,6 +2194,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
       ],
+      tsutatsu: ["5－2－8"],
     },
     {
       name: "損害賠償金・違約金",
@@ -2105,6 +2216,7 @@
         "https://www.nta.go.jp/law/shitsugi/shohi/16/15.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/02/23.htm",
       ],
+      tsutatsu: ["5－2－5"],
     },
     {
       name: "立退料（借家人が受け取るもの）",
@@ -2117,6 +2229,7 @@
         "借家人が賃貸借契約の解除に伴い受け取る立退料",
       ],
       note: "賃借権を第三者に譲渡して受け取る対価は課税（土地の借地権なら非課税）。",
+      tsutatsu: ["5－2－7"],
     },
     {
       name: "敷金・保証金（返還されるもの）",
@@ -2134,6 +2247,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6225.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/02/06.htm",
       ],
+      tsutatsu: ["5－4－3"],
     },
     {
       name: "租税公課（固定資産税・自動車税・印紙税等）",
@@ -2152,6 +2266,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/02/33.htm",
       ],
+      tsutatsu: ["10－1－6"],
     },
     {
       name: "入湯税・宿泊税・ゴルフ場利用税・軽油引取税",
@@ -2170,6 +2285,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6313.htm",
       ],
+      tsutatsu: ["10－1－11"],
     },
     {
       name: "罰金・交通反則金・延滞税",
@@ -2194,6 +2310,7 @@
       examples: [
         "建物・車両・備品の減価償却費",
       ],
+      tsutatsu: ["11－3－3"],
     },
     {
       name: "貸倒引当金・各種引当金・評価損",
@@ -2260,6 +2377,7 @@
         "源泉所得税の預り金",
       ],
       note: "立替払いを精算する場合、立替金精算書等の保存でインボイスとして扱える。",
+      tsutatsu: ["11－6－2"],
     },
     {
       name: "団体の会費（対価性がないもの）",
@@ -2277,6 +2395,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6467.htm",
       ],
+      tsutatsu: ["5－5－3", "11－2－4"],
     },
     {
       name: "試供品・見本品の無償提供",
@@ -2294,6 +2413,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6157.htm",
       ],
+      tsutatsu: ["11－2－14", "5－2－12"],
     },
     {
       name: "お布施・戒名料・玉串料",
@@ -2330,6 +2450,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6210.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6105.htm",
       ],
+      tsutatsu: ["5－7－1", "5－7－15", "11－2－11"],
     },
     {
       name: "海外出張の現地費用",
@@ -2377,6 +2498,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6145.htm",
       ],
+      tsutatsu: ["5－2－10"],
     },
 
     {
@@ -2395,6 +2517,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6475.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/02/07.htm",
       ],
+      tsutatsu: ["5－5－10"],
     },
     {
       name: "住居手当",
@@ -2410,6 +2533,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/16/04.htm",
       ],
+      tsutatsu: ["11－1－2"],
     },
     {
       name: "チップ",
@@ -2439,6 +2563,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6261.htm",
       ],
+      tsutatsu: ["5－2－5"],
     },
     {
       name: "早期完済割引料",
@@ -2454,6 +2579,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/02/14.htm",
       ],
+      tsutatsu: ["5－2－5"],
     },
     {
       name: "社員食堂での食事の無償提供",
@@ -2470,6 +2596,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6471.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/16/10.htm",
       ],
+      tsutatsu: ["11－2－1"],
     },
     {
       name: "三国間貿易（国外で仕入れて国外で販売）",
@@ -2484,6 +2611,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6210.htm",
       ],
+      tsutatsu: ["5－7－1", "5－7－10"],
     },
     {
       name: "産業医の報酬（開業医個人に支払うもの）",
@@ -2499,6 +2627,7 @@
       refs: [
         "https://www.nta.go.jp/law/shitsugi/shohi/13/01.htm",
       ],
+      tsutatsu: ["1－1－1"],
     },
 
     /* ===================== 免税（0%） ===================== */
@@ -2519,6 +2648,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6205.htm",
       ],
+      tsutatsu: ["7－1－1", "7－2－1", "7－2－23"],
     },
     {
       name: "国際線航空券・国際輸送",
@@ -2538,6 +2668,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/11/04.htm",
       ],
+      tsutatsu: ["7－2－4", "7－2－5", "5－7－13"],
     },
     {
       name: "国際電話・国際郵便",
@@ -2553,6 +2684,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
       ],
+      tsutatsu: ["7－2－1"],
     },
     {
       name: "非居住者への役務の提供",
@@ -2572,6 +2704,7 @@
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
         "https://www.nta.go.jp/law/shitsugi/shohi/11/02.htm",
       ],
+      tsutatsu: ["7－2－15", "7－2－16", "7－2－17"],
     },
     {
       name: "非居住者への無形固定資産の譲渡・貸付け",
@@ -2588,6 +2721,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6551.htm",
       ],
+      tsutatsu: ["7－2－1", "5－7－5"],
     },
     {
       name: "外国人旅行者向け免税販売（輸出物品販売場）",
@@ -2604,6 +2738,7 @@
       refs: [
         "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6559.htm",
       ],
+      tsutatsu: ["8－1－1", "8－2－1"],
     },
     {
       name: "外航船舶・航空機の譲渡・貸付け・修理",
@@ -2617,6 +2752,7 @@
         "国際輸送用コンテナの譲渡・貸付け",
         "外国貨物の荷役・保管",
       ],
+      tsutatsu: ["7－2－8", "7－2－9", "7－2－10", "7－2－12"],
     },
   ];
 

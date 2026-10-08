@@ -2,6 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const { FETCHED_AT, TYPES, ARTICLES } = require("../js/tsutatsu.js");
 const { searchArticles } = require("../js/search.js");
+const { ITEMS } = require("../js/data.js");
 
 test("取得日が YYYY-MM-DD 形式", () => {
   assert.match(FETCHED_AT, /^\d{4}-\d{2}-\d{2}$/);
@@ -48,4 +49,19 @@ test("通達番号・見出し・本文で検索できる", () => {
   assert.ok(kihon.length > 0 && kihon.every((a) => a.type === "kihon"));
   const tori = searchArticles(ARTICLES, "一体資産", { type: "toriatsukai" });
   assert.ok(tori.length > 0 && tori.every((a) => a.type === "toriatsukai"));
+});
+
+test("辞書項目の tsutatsu はすべて収録済みの基本通達の番号", () => {
+  const kihon = new Set(ARTICLES.filter((a) => a.type === "kihon").map((a) => a.no));
+  let count = 0;
+  for (const item of ITEMS) {
+    if (item.tsutatsu === undefined) continue;
+    assert.ok(Array.isArray(item.tsutatsu) && item.tsutatsu.length, `${item.name}: tsutatsu が空`);
+    assert.equal(new Set(item.tsutatsu).size, item.tsutatsu.length, `${item.name}: tsutatsu が重複`);
+    for (const no of item.tsutatsu) {
+      assert.ok(kihon.has(no), `${item.name}: 未収録の通達番号 ${no}`);
+      count++;
+    }
+  }
+  assert.ok(count > 100, "tsutatsu の参照が少なすぎる");
 });
