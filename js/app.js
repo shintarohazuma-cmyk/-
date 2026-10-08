@@ -111,6 +111,23 @@
     return el("div", { class: "examples-block" }, [el("p", { class: "examples-title", text: "具体例" }), list]);
   }
 
+  var KIHON_BY_NO = {};
+  TSUTATSU.ARTICLES.forEach(function (a) {
+    if (a.type === "kihon") KIHON_BY_NO[a.no] = a;
+  });
+
+  function renderTsutatsuRefs(item) {
+    if (!item.tsutatsu || !item.tsutatsu.length) return null;
+    var list = el("ul", { class: "refs" });
+    item.tsutatsu.forEach(function (no) {
+      var a = KIHON_BY_NO[no];
+      if (!a) return;
+      list.appendChild(el("li", {}, [externalLink(a.url, "基本通達　" + a.no + " " + a.title)]));
+    });
+    if (!list.children.length) return null;
+    return el("div", {}, [el("p", { class: "refs-title", text: "関連する通達" }), list]);
+  }
+
   function renderItem(item) {
     var body = el("div", { class: "item-body" }, [
       el("p", { class: "item-desc", text: item.desc }),
@@ -122,6 +139,7 @@
         item.keywords.length ? el("dt", { text: "関連語" }) : null,
         item.keywords.length ? el("dd", { text: item.keywords.join("、") }) : null,
       ]),
+      renderTsutatsuRefs(item),
       renderRefs(item),
     ]);
     var summary = el("summary", { class: "item-head" }, [
