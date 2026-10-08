@@ -5,6 +5,7 @@
   var ITEMS = TAX_DATA.ITEMS;
   var CAT_ORDER = ["k10", "k8", "hi", "fu", "men"];
   var NTA = typeof NTA_DATA !== "undefined" ? NTA_DATA : { FETCHED_AT: "", TYPES: {}, ARTICLES: [] };
+  var TSUTATSU = typeof TSUTATSU_DATA !== "undefined" ? TSUTATSU_DATA : { FETCHED_AT: "", TYPES: {}, ARTICLES: [] };
   var ARTICLE_BY_URL = {};
   NTA.ARTICLES.forEach(function (a) {
     ARTICLE_BY_URL[a.url] = a;
@@ -307,119 +308,134 @@
     });
   }
 
-  /* ---------- 国税庁の記事 ---------- */
+  /* ---------- 国税庁の記事・通達（共通の一覧） ---------- */
 
   var PAGE_SIZE = 50;
-  var ntaState = { q: "", type: "", category: "", limit: PAGE_SIZE };
 
-  function buildNtaFilters() {
-    var chips = $("nta-type-filters");
-    var types = [{ code: "", label: "すべて" }].concat(
-      Object.keys(NTA.TYPES).map(function (code) {
-        return { code: code, label: NTA.TYPES[code].label };
-      })
-    );
-    types.forEach(function (t) {
-      var btn = el("button", {
-        class: "chip" + (t.code === ntaState.type ? " is-active" : ""),
-        type: "button",
-        "data-type": t.code,
-        "aria-pressed": String(t.code === ntaState.type),
-        text: t.label,
-      });
-      btn.addEventListener("click", function () {
-        ntaState.type = t.code;
-        Array.prototype.forEach.call(chips.children, function (b) {
-          var active = b.getAttribute("data-type") === ntaState.type;
-          b.classList.toggle("is-active", active);
-          b.setAttribute("aria-pressed", String(active));
+  /*
+   * 国税庁の記事・通達の一覧タブを作る。
+   * prefix : 要素IDの接頭辞（例：nta → #nta-q, #nta-results …）
+   * data   : { TYPES, ARTICLES }
+   * opts.noLabel(a) : 見出し行に出す番号・分類の文字列
+   * opts.extra(a)   : 詳細に追加する要素の配列（任意）
+   */
+  function setupDocTab(prefix, data, opts) {
+    var st = { q: "", type: "", category: "", limit: PAGE_SIZE };
+    var chips = $(prefix + "-type-filters");
+    var select = $(prefix + "-category-filter");
+
+    [{ code: "", label: "すべて" }]
+      .concat(
+        Object.keys(data.TYPES).map(function (code) {
+          return { code: code, label: data.TYPES[code].label };
+        })
+      )
+      .forEach(function (t) {
+        var btn = el("button", {
+          class: "chip" + (t.code === st.type ? " is-active" : ""),
+          type: "button",
+          "data-type": t.code,
+          "aria-pressed": String(t.code === st.type),
+          text: t.label,
         });
-        fillCategories();
-        renderNta(true);
+        btn.addEventListener("click", function () {
+          st.type = t.code;
+          Array.prototype.forEach.call(chips.children, function (b) {
+            var active = b.getAttribute("data-type") === st.type;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-pressed", String(active));
+          });
+          fillCategories();
+          renderList(true);
+        });
+        chips.appendChild(btn);
       });
-      chips.appendChild(btn);
+    select.addEventListener("change", function (e) {
+      st.category = e.target.value;
+      renderList(true);
     });
-    $("nta-category-filter").addEventListener("change", function (e) {
-      ntaState.category = e.target.value;
-      renderNta(true);
+    $(prefix + "-q").addEventListener("input", function (e) {
+      st.q = e.target.value;
+      renderList(true);
     });
-    $("nta-q").addEventListener("input", function (e) {
-      ntaState.q = e.target.value;
-      renderNta(true);
-    });
+
+    // 種別に応じて分類の選択肢を作り直す（国税庁の目次順）
+    function fillCategories() {
+      var seen = {};
+      var cats = [];
+      data.ARTICLES.forEach(function (a) {
+        if (st.type && a.type !== st.type) return;
+        var key = a.type + "|" + a.category;
+        if (seen[key]) return;
+        seen[key] = true;
+        cats.push({ key: key, type: a.type, category: a.category });
+      });
+      select.textContent = "";
+      select.appendChild(el("option", { value: "", text: "すべての分類" }));
+      var found = false;
+      cats.forEach(function (c) {
+        if (c.key === st.category) found = true;
+        var label = st.type ? c.category : data.TYPES[c.type].label + "：" + c.category;
+        select.appendChild(el("option", { value: c.key, text: label }));
+      });
+      if (!found) st.category = "";
+      select.value = st.category;
+    }
+
+    function renderOne(a) {
+      var summary = el("summary", { class: "item-head article-head" }, [
+        el("span", { class: "badge article-type", text: data.TYPES[a.type].label }),
+        el("span", { class: "article-title" }, [
+          el("span", { class: "article-no", text: opts.noLabel(a) }),
+          el("span", { class: "item-name", text: a.title }),
+        ]),
+      ]);
+      var body = el(
+        "div",
+        { class: "item-body" },
+        [
+          el("p", { class: "article-summary", text: a.summary }),
+          el("p", {}, [externalLink(a.url, "国税庁の原文を開く ↗", "article-link")]),
+        ].concat(opts.extra ? opts.extra(a) : [])
+      );
+      return el("li", { class: "item article" + (a.status ? " is-abolished" : "") }, [el("details", {}, [summary, body])]);
+    }
+
+    function renderList(resetLimit) {
+      if (resetLimit) st.limit = PAGE_SIZE;
+      // 分類の値は「種別|分類」（種別をまたいで同名の分類があるため）
+      var sep = st.category.indexOf("|");
+      var results = TaxSearch.searchArticles(data.ARTICLES, st.q, {
+        type: sep >= 0 ? st.category.slice(0, sep) : st.type,
+        category: sep >= 0 ? st.category.slice(sep + 1) : "",
+      });
+      var list = $(prefix + "-results");
+      list.textContent = "";
+      results.slice(0, st.limit).forEach(function (a) {
+        list.appendChild(renderOne(a));
+      });
+      if (!results.length) {
+        list.appendChild(el("li", { class: "empty" }, [el("p", { text: "該当する項目が見つかりませんでした。" })]));
+      }
+      if (results.length > st.limit) {
+        var more = el("button", {
+          class: "btn btn-ghost more",
+          type: "button",
+          text: "さらに表示（残り " + (results.length - st.limit) + " 件）",
+        });
+        more.addEventListener("click", function () {
+          st.limit += PAGE_SIZE;
+          renderList(false);
+        });
+        list.appendChild(el("li", { class: "empty" }, [more]));
+      }
+      if (results.length === 1) list.querySelector("details").open = true;
+      $(prefix + "-count").textContent = results.length + " 件";
+    }
+
+    $(prefix + "-fetched").textContent = data.FETCHED_AT;
     fillCategories();
-  }
-
-  // 種別に応じて分類の選択肢を作り直す（国税庁の目次順）
-  function fillCategories() {
-    var select = $("nta-category-filter");
-    var seen = {};
-    var cats = [];
-    NTA.ARTICLES.forEach(function (a) {
-      if (ntaState.type && a.type !== ntaState.type) return;
-      var key = a.type + "|" + a.category;
-      if (seen[key]) return;
-      seen[key] = true;
-      cats.push({ key: key, type: a.type, category: a.category });
-    });
-    select.textContent = "";
-    select.appendChild(el("option", { value: "", text: "すべての分類" }));
-    var found = false;
-    cats.forEach(function (c) {
-      if (c.key === ntaState.category) found = true;
-      var label = ntaState.type ? c.category : NTA.TYPES[c.type].label + "：" + c.category;
-      select.appendChild(el("option", { value: c.key, text: label }));
-    });
-    if (!found) ntaState.category = "";
-    select.value = ntaState.category;
-  }
-
-  function renderArticle(a) {
-    var summary = el("summary", { class: "item-head article-head" }, [
-      el("span", { class: "badge article-type", text: NTA.TYPES[a.type].label }),
-      el("span", { class: "article-title" }, [
-        el("span", { class: "article-no", text: (a.type === "taxanswer" ? "No." : "事例 ") + a.no + "　" + a.category }),
-        el("span", { class: "item-name", text: a.title }),
-      ]),
-    ]);
-    var body = el("div", { class: "item-body" }, [
-      el("p", { class: "article-summary", text: a.summary }),
-      el("p", {}, [externalLink(a.url, "国税庁の原文を開く ↗", "article-link")]),
-      a.asOf ? el("p", { class: "article-asof", text: "記事の基準：" + a.asOf }) : null,
-    ]);
-    return el("li", { class: "item article" }, [el("details", {}, [summary, body])]);
-  }
-
-  function renderNta(resetLimit) {
-    if (resetLimit) ntaState.limit = PAGE_SIZE;
-    // 分類の値は「種別|分類」（種別をまたいで同名の分類があるため）
-    var sep = ntaState.category.indexOf("|");
-    var results = TaxSearch.searchArticles(NTA.ARTICLES, ntaState.q, {
-      type: sep >= 0 ? ntaState.category.slice(0, sep) : ntaState.type,
-      category: sep >= 0 ? ntaState.category.slice(sep + 1) : "",
-    });
-    var list = $("nta-results");
-    list.textContent = "";
-    results.slice(0, ntaState.limit).forEach(function (a) {
-      list.appendChild(renderArticle(a));
-    });
-    if (!results.length) {
-      list.appendChild(el("li", { class: "empty" }, [el("p", { text: "該当する記事が見つかりませんでした。" })]));
-    }
-    if (results.length > ntaState.limit) {
-      var more = el("button", {
-        class: "btn btn-ghost more",
-        type: "button",
-        text: "さらに表示（残り " + (results.length - ntaState.limit) + " 件）",
-      });
-      more.addEventListener("click", function () {
-        ntaState.limit += PAGE_SIZE;
-        renderNta(false);
-      });
-      list.appendChild(el("li", { class: "empty" }, [more]));
-    }
-    if (results.length === 1) list.querySelector("details").open = true;
-    $("nta-count").textContent = results.length + " 件";
+    renderList(true);
   }
 
   /* ---------- タブ ---------- */
@@ -449,12 +465,24 @@
 
   $("item-total").textContent = "収録 " + ITEMS.length + " 項目";
 
-  $("nta-fetched").textContent = NTA.FETCHED_AT;
-
   buildFilters();
   render();
-  buildNtaFilters();
-  renderNta(true);
+  setupDocTab("tsu", TSUTATSU, {
+    noLabel: function (a) {
+      return a.no + "　" + a.category + (a.section ? "　" + a.section : "");
+    },
+    extra: function (a) {
+      return a.status ? [el("p", { class: "article-status", text: "この通達は" + a.status + "されています。" })] : [];
+    },
+  });
+  setupDocTab("nta", NTA, {
+    noLabel: function (a) {
+      return (a.type === "taxanswer" ? "No." : "事例 ") + a.no + "　" + a.category;
+    },
+    extra: function (a) {
+      return a.asOf ? [el("p", { class: "article-asof", text: "記事の基準：" + a.asOf })] : [];
+    },
+  });
   renderFlow();
   renderGuide();
 })();
