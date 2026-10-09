@@ -7,6 +7,7 @@
     "test": "node --test tests/*.test.js",
     "start": "python3 -m http.server 8000",
     "update-nta": "node scripts/fetch-nta.js \"${NTA_HTML_DIR:-/tmp/nta-html}\" && node scripts/build-nta.js \"${NTA_HTML_DIR:-/tmp/nta-html}\"",
-    "update-tsutatsu": "node scripts/fetch-tsutatsu.js \"${TSUTATSU_HTML_DIR:-/tmp/tsutatsu-html}\" && node scripts/build-tsutatsu.js \"${TSUTATSU_HTML_DIR:-/tmp/tsutatsu-html}\""
+    "update-tsutatsu": "node scripts/fetch-tsutatsu.js \"${TSUTATSU_HTML_DIR:-/tmp/tsutatsu-html}\" && node scripts/build-tsutatsu.js \"${TSUTATSU_HTML_DIR:-/tmp/tsutatsu-html}\"",
+    "update-invoice": "node scripts/fetch-invoice.js \"${INVOICE_HTML_DIR:-/tmp/invoice-html}\" && node scripts/build-invoice.js \"${INVOICE_HTML_DIR:-/tmp/invoice-html}\""
   }
 }

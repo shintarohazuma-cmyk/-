@@ -7,6 +7,7 @@
   var CAT_ORDER = ["k10", "k8", "hi", "fu", "men"];
   var NTA = typeof NTA_DATA !== "undefined" ? NTA_DATA : { FETCHED_AT: "", TYPES: {}, ARTICLES: [] };
   var TSUTATSU = typeof TSUTATSU_DATA !== "undefined" ? TSUTATSU_DATA : { FETCHED_AT: "", TYPES: {}, ARTICLES: [] };
+  var INVOICE = typeof INVOICE_DATA !== "undefined" ? INVOICE_DATA : { FETCHED_AT: "", OVERVIEW: [], QA: [] };
   var ARTICLE_BY_URL = {};
   NTA.ARTICLES.forEach(function (a) {
     ARTICLE_BY_URL[a.url] = a;
@@ -378,6 +379,8 @@
    * data   : { TYPES, ARTICLES }
    * opts.noLabel(a) : 見出し行に出す番号・分類の文字列
    * opts.extra(a)   : 詳細に追加する要素の配列（任意）
+   * opts.before(a)  : 詳細の本文の前に置く要素の配列（任意）
+   * opts.hideTypes  : 種別が1つだけのとき種別ボタンを出さない
    */
   function setupDocTab(prefix, data, opts) {
     var st = { q: "", type: "", category: "", limit: PAGE_SIZE };
@@ -410,6 +413,7 @@
         });
         chips.appendChild(btn);
       });
+    if (opts.hideTypes) chips.hidden = true;
     select.addEventListener("change", function (e) {
       st.category = e.target.value;
       renderList(true);
@@ -453,10 +457,10 @@
       var body = el(
         "div",
         { class: "item-body" },
-        [
+        (opts.before ? opts.before(a) : []).concat([
           el("p", { class: "article-summary", text: a.summary }),
           el("p", {}, [externalLink(a.url, "国税庁の原文を開く ↗", "article-link")]),
-        ].concat(opts.extra ? opts.extra(a) : [])
+        ]).concat(opts.extra ? opts.extra(a) : [])
       );
       return el("li", { class: "item article" + (a.status ? " is-abolished" : "") }, [el("details", {}, [summary, body])]);
     }
@@ -498,6 +502,29 @@
     renderList(true);
   }
 
+  /* ---------- インボイス制度 ---------- */
+
+  function renderInvoiceOverview() {
+    var root = $("inv-overview");
+    INVOICE.OVERVIEW.forEach(function (o, i) {
+      var body = el("div", { class: "item-body" });
+      o.sections.forEach(function (sec) {
+        if (sec.heading) body.appendChild(el(sec.level === 2 ? "h3" : "h4", { class: "inv-heading", text: sec.heading }));
+        sec.paragraphs.forEach(function (t) {
+          body.appendChild(el("p", { class: "inv-paragraph", text: t }));
+        });
+      });
+      body.appendChild(el("p", {}, [externalLink(o.url, "国税庁の原文を開く ↗", "article-link")]));
+      if (o.asOf) body.appendChild(el("p", { class: "article-asof", text: "記事の基準：" + o.asOf }));
+      var details = el("details", {}, [
+        el("summary", { class: "item-head" }, [el("span", { class: "item-name", text: o.title })]),
+        body,
+      ]);
+      if (i === 0) details.open = true;
+      root.appendChild(el("div", { class: "item article inv-card" }, [details]));
+    });
+  }
+
   /* ---------- タブ ---------- */
 
   function showTab(name) {
@@ -535,6 +562,38 @@
       return a.status ? [el("p", { class: "article-status", text: "この通達は" + a.status + "されています。" })] : [];
     },
   });
+  renderInvoiceOverview();
+  setupDocTab(
+    "inv",
+    {
+      FETCHED_AT: INVOICE.FETCHED_AT,
+      TYPES: { qa: { label: "インボイスQ&A" } },
+      ARTICLES: INVOICE.QA.map(function (q) {
+        return {
+          type: "qa",
+          no: q.no,
+          title: q.title,
+          category: q.category,
+          question: q.question,
+          summary: q.summary,
+          revised: q.revised,
+          url: q.url,
+        };
+      }),
+    },
+    {
+      hideTypes: true,
+      noLabel: function (a) {
+        return "問" + a.no + "　" + a.category;
+      },
+      before: function (a) {
+        return [el("p", { class: "inv-question" }, [el("strong", { text: "問　" }), document.createTextNode(a.question)])];
+      },
+      extra: function (a) {
+        return a.revised ? [el("p", { class: "article-asof", text: a.revised })] : [];
+      },
+    }
+  );
   setupDocTab("nta", NTA, {
     noLabel: function (a) {
       return (a.type === "taxanswer" ? "No." : "事例 ") + a.no + "　" + a.category;
