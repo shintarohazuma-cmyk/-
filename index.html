@@ -16,6 +16,7 @@
       <button class="tab" role="tab" data-tab="guide" aria-selected="false">区分の解説</button>
       <button class="tab" role="tab" data-tab="tsu" aria-selected="false">通達</button>
       <button class="tab" role="tab" data-tab="nta" aria-selected="false">国税庁の記事</button>
+      <button class="tab" role="tab" data-tab="inv" aria-selected="false">インボイス</button>
     </nav>
   </header>
 
@@ -106,6 +107,25 @@
       <ul id="nta-results" class="results"></ul>
       <p class="source">出典：<a href="https://www.nta.go.jp/" target="_blank" rel="noopener">国税庁ホームページ</a>（タックスアンサー・質疑応答事例「消費税」）　取得日：<span id="nta-fetched"></span><br>要旨は各記事の冒頭部分を抜粋したものです。内容は必ずリンク先の原文でご確認ください。</p>
     </section>
+
+    <!-- インボイス制度 -->
+    <section id="tab-inv" class="panel" role="tabpanel" hidden>
+      <h2 class="section-title">インボイス制度の概要</h2>
+      <div id="inv-overview" class="results inv-overview"></div>
+      <h2 class="section-title">インボイス制度に関するQ&amp;A</h2>
+      <div class="search-box">
+        <input id="inv-q" type="search" placeholder="例：問24、登録番号、簡易インボイス、2割特例" autocomplete="off" aria-label="インボイスQ&amp;Aを検索">
+      </div>
+      <div class="filters">
+        <div id="inv-type-filters" class="chips"></div>
+        <select id="inv-category-filter" class="select" aria-label="分類で絞り込み">
+          <option value="">すべての分類</option>
+        </select>
+      </div>
+      <p id="inv-count" class="count"></p>
+      <ul id="inv-results" class="results"></ul>
+      <p class="source">出典：国税庁ホームページ（タックスアンサー No.6498・6625・6496・6497、<a href="https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/qa_invoice_mokuji.htm" target="_blank" rel="noopener">インボイス制度に関するQ&amp;A</a>）　取得日：<span id="inv-fetched"></span><br>Q&amp;Aの答えは各問の【答】の冒頭部分を抜粋したものです。図表・計算例・参考を含む全文は、必ずリンク先の原文（PDF）でご確認ください。</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -115,6 +135,7 @@
   <script src="js/data.js"></script>
   <script src="js/nta.js"></script>
   <script src="js/tsutatsu.js"></script>
+  <script src="js/invoice.js"></script>
   <script src="js/search.js"></script>
   <script src="js/app.js"></script>
 </body>

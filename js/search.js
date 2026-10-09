@@ -83,7 +83,7 @@
   // 1語に対する記事のスコア（0 = 一致なし）。番号は「No.6201」「6201」どちらでも可
   function scoreArticle(article, term) {
     var no = normalize(article.no);
-    var bare = term.replace(/^no/, "");
+    var bare = term.replace(/^(no|問)/, "");
     if (bare && (no === bare || no === term)) return 100;
     var title = normalize(article.title);
     if (title === term) return 90;
@@ -91,12 +91,13 @@
     if (title.indexOf(term) >= 0) return 60;
     if (bare && no.indexOf(bare) === 0) return 40;
     if (normalize(article.category).indexOf(term) >= 0) return 30;
+    if (article.question && normalize(article.question).indexOf(term) >= 0) return 20;
     if (normalize(article.summary).indexOf(term) >= 0) return 15;
     return 0;
   }
 
   /*
-   * 国税庁の記事を検索する（番号・タイトル・分類・要旨）。
+   * 国税庁の記事・通達・Q&Aを検索する（番号・タイトル・分類・問い・要旨）。
    * options.type     : 種別（taxanswer / qa）で絞り込み
    * options.category : 分類で絞り込み
    */
